@@ -1,0 +1,21 @@
+{
+    "idReparacion": 1,
+    "vehiculoEntity": {
+        "patente": 1,
+        "marca": "Toyota",
+        "modelo": "Corolla",
+        "tipoVehiculo": 1,
+        "kilometraje": 50000,
+        "ano": 2020,
+        "tipoMotor": 1,
+        "asientos": 5
+    },
+    "fechaIngreso": "2024-04-07",
+    "fechaSalida": "2024-04-10",
+    "horaSalida": "18:00:00",
+    "fechaRetiro": "2024-04-10",
+    "horaRetiro": "18:30:00",
+    "recargos": 0,
+    "descuentos": 0,
+    "precio_total": 150
+}

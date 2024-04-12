@@ -2,7 +2,6 @@ package usach.tingeso.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import usach.tingeso.entities.ReparacionEntity;
 import usach.tingeso.entities.VehiculoEntity;
@@ -36,12 +35,5 @@ public class ReparacionService {
     public List<ReparacionEntity> getReparacionesVehiculoEsteAno(VehiculoEntity vehiculo){
         return (List<ReparacionEntity>) reparacionRepository.findByVehiculoEsteAno(vehiculo);
     }
-
-
-
-
-
-
-
 
 }

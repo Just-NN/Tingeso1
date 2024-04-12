@@ -25,6 +25,4 @@ public class VehiculoEntity {
     private int tipoMotor;
     private int asientos;
 
-
-
 }

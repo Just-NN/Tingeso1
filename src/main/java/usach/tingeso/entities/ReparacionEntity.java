@@ -1,9 +1,12 @@
 package usach.tingeso.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.DayOfWeek;
@@ -24,9 +27,17 @@ public class ReparacionEntity {
     @Column(unique = true, nullable = false)
     private Long idReparacion;
     
+    @Getter
     @ManyToOne
-    @JoinColumn(name = "patenteVehiculo")
+    @JoinColumn(name = "patente")
     private VehiculoEntity vehiculoEntity;
+
+    @Getter
+    @OneToOne
+    @JsonIgnore
+    @MapsId
+    @JoinColumn(name = "idBoleta", nullable = true)
+    private BoletaEntity boletaEntity;
 
     private Date fechaIngreso;
     private Date fechaSalida;
@@ -36,18 +47,25 @@ public class ReparacionEntity {
 
     private LocalTime horaRetiro;
 
-    private int recargos;
-    private int descuentos;
-    private int precio_total;
+    // Estos atributos me hacen pensar en una 3era entidad: boleta - a considerar
 
 
-    public DayOfWeek getDiaDeSemana(){
-        return fechaIngreso.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate().getDayOfWeek();
-    }
 
     public LocalTime getHoraIngreso(){
-        ZonedDateTime zdt = this.fechaIngreso.toInstant().atZone(ZoneId.systemDefault());
-        return zdt.toLocalTime();
+    if (this.fechaIngreso == null) {
+        // return a default value or throw an exception
+        return null;
     }
+    ZonedDateTime zdt = this.fechaIngreso.toInstant().atZone(ZoneId.systemDefault());
+    return zdt.toLocalTime();
+}
+
+public DayOfWeek getDiaDeSemana(){
+    if (this.fechaIngreso == null) {
+        // return a default value or throw an exception
+        return null;
+    }
+    return fechaIngreso.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate().getDayOfWeek();
+}
 
 }

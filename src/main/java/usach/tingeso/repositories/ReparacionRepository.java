@@ -21,5 +21,4 @@ public interface ReparacionRepository extends JpaRepository<ReparacionEntity, Lo
     List<ReparacionEntity> findByVehiculoEsteAno(@Param("vehiculo") VehiculoEntity vehiculo);
 
 
-
 }
