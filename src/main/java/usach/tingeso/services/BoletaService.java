@@ -44,17 +44,47 @@ public class BoletaService {
     }
     //--------------------------------------------------------------------------------------------------------------
     // Calcular cada valor para guardarlo en la boleta
+
+    // -------------------------- Recargos----------------------------
     public BoletaEntity guardarRecargoPorKM(BoletaEntity boleta){
         ReparacionEntity reparacion = boleta.getReparacionEntity();
         double recargoKM = bonosRecargosService.calcularRecargoPorKM(reparacion);
         boleta.setRecargoPorKM((int) round(recargoKM*boleta.getPrecioBase()));
         return boletaRepository.save(boleta);
     }
-    public BoletaEntity guardarRecargpPorAntiguedad(BoletaEntity boleta){
+    public BoletaEntity guardarRecargoPorAntiguedad(BoletaEntity boleta){
         ReparacionEntity reparacion = boleta.getReparacionEntity();
         double recargoAntiguedad = bonosRecargosService.calcularRecargoPorAntiguedad(reparacion);
-        boleta.setRecargoPorKM((int) round(recargoAntiguedad*boleta.getPrecioBase()));
+        boleta.setRecargoPorAntiguedad((int) round(recargoAntiguedad*boleta.getPrecioBase()));
         return boletaRepository.save(boleta);
     }
+    public BoletaEntity guardarRecargoPorRetraso(BoletaEntity boleta){
+        ReparacionEntity reparacion = boleta.getReparacionEntity();
+        double recargoRetraso = bonosRecargosService.calcularRecargoPorRetraso(reparacion);
+        boleta.setRecargoPorRetraso((int) round(recargoRetraso*boleta.getPrecioBase()));
+        return boletaRepository.save(boleta);
+    }
+    // -------------------------- Descuentos----------------------------
+    public BoletaEntity guardarDescuentoPorReparaciones(BoletaEntity boleta){
+        ReparacionEntity reparacion = boleta.getReparacionEntity();
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        boleta.setDescuentoPorReparaciones((int) round(descuentoReparaciones*boleta.getPrecioBase()));
+        return boletaRepository.save(boleta);
+    }
+    public BoletaEntity guardarDescuentoPorDia(BoletaEntity boleta){
+        ReparacionEntity reparacion = boleta.getReparacionEntity();
+        double recargoDia = bonosRecargosService.calcularDescuentoPorDia(reparacion);
+        boleta.setDescuentoPorDia((int) round(recargoDia*boleta.getPrecioBase()));
+        return boletaRepository.save(boleta);
+    }
+    // -----------Total de la boleta----------------
+
+
+    public BoletaEntity guardarPrecioTotal(BoletaEntity boleta){
+        double total = bonosRecargosService.calcularPrecioTotal(boleta);
+        boleta.setPrecioTotal(boleta.getPrecioBase());
+        return boletaRepository.save(boleta);
+    }
+
 }
 

@@ -7,6 +7,7 @@ import usach.tingeso.entities.ReparacionEntity;
 import usach.tingeso.entities.VehiculoEntity;
 import usach.tingeso.repositories.ReparacionRepository;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -33,7 +34,9 @@ public class ReparacionService {
     }
 
     public List<ReparacionEntity> getReparacionesVehiculoEsteAno(VehiculoEntity vehiculo){
-        return (List<ReparacionEntity>) reparacionRepository.findByVehiculoEsteAno(vehiculo);
+        Calendar fecha = Calendar.getInstance();
+        fecha.add(Calendar.YEAR, -1); // Resta 1 año a la fecha actual
+        return reparacionRepository.findByVehiculoEsteAno(vehiculo, fecha);
     }
 
 }

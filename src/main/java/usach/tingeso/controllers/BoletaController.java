@@ -31,9 +31,36 @@ public class BoletaController {
     public ResponseEntity<BoletaEntity> updateBoleta(@RequestBody BoletaEntity boleta){
         return ResponseEntity.ok(boletaService.saveBoleta(boleta));
     }
-    @PutMapping("/bono/")
+    @PutMapping("/bono/km")
     public ResponseEntity<BoletaEntity> updateRecargoKM(@RequestBody BoletaEntity boleta){
         return ResponseEntity.ok(boletaService.guardarRecargoPorKM(boleta));
+    }
+    @PutMapping("/bono/a")
+    public ResponseEntity<BoletaEntity> updateRecargoAntiguedad(@RequestBody BoletaEntity boleta){
+        return ResponseEntity.ok(boletaService.guardarRecargoPorAntiguedad(boleta));
+    }
+    @PutMapping("/bono/d")
+    public ResponseEntity<BoletaEntity> updateDescuentoDia(@RequestBody BoletaEntity boleta){
+        return ResponseEntity.ok(boletaService.guardarDescuentoPorDia(boleta));
+    }
+    @PutMapping("/bono/h")
+    public ResponseEntity<BoletaEntity> updateDescuentoReparaciones(@RequestBody BoletaEntity boleta){
+        return ResponseEntity.ok(boletaService.guardarDescuentoPorReparaciones(boleta));
+    }
+    @PutMapping("/total/")
+    public ResponseEntity<BoletaEntity> updateTotal(@RequestBody BoletaEntity boleta){
+        return ResponseEntity.ok(boletaService.guardarPrecioTotal(boleta));
+    }
+    @PutMapping("/init/")
+    public ResponseEntity<?> inicializarBoleta(@RequestBody BoletaEntity boleta){
+        boletaService.guardarRecargoPorKM(boleta);
+        boletaService.guardarRecargoPorAntiguedad(boleta);
+        boletaService.guardarDescuentoPorDia(boleta);
+        boletaService.guardarDescuentoPorReparaciones(boleta);
+        boletaService.guardarRecargoPorRetraso(boleta);
+        boletaService.guardarPrecioTotal(boleta);
+        return ResponseEntity.ok("Tudo bem");
+
     }
 
 }

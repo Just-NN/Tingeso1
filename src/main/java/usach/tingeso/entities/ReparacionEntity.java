@@ -13,6 +13,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -39,11 +40,11 @@ public class ReparacionEntity {
     @JoinColumn(name = "idBoleta", nullable = true)
     private BoletaEntity boletaEntity;
 
-    private Date fechaIngreso;
-    private Date fechaSalida;
+    private Calendar fechaIngreso;
+    private Calendar fechaSalida;
     private LocalTime horaSalida;
 
-    private Date fechaRetiro;
+    private Calendar fechaRetiro;
 
     private LocalTime horaRetiro;
 
