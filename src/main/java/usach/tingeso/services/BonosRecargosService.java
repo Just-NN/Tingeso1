@@ -15,6 +15,9 @@ import java.util.List;
 
 @Service
 public class BonosRecargosService {
+
+    // Este servicio existe para poder realizar los cálculos de recargos y descuentos de las boletas
+
     @Autowired
     ReparacionService reparacionService;
     // Calcula cada recargo
@@ -97,13 +100,12 @@ public class BonosRecargosService {
         return recargoAntiguedad;
     }
     public double calcularRecargoPorRetraso(ReparacionEntity reparacion){
-        System.out.println("RETRASOOOO");
         long retraso = ChronoUnit.DAYS.between(reparacion.getFechaIngreso().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                 reparacion.getFechaRetiro().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        System.out.println("Retraso: " + retraso);
         return (retraso*0.05);
     }
 
+    // Calcula cada descuento
     public double calcularDescuentoPorReparaciones(ReparacionEntity reparacion){
     VehiculoEntity vehiculo = reparacion.getVehiculoEntity();
     List<ReparacionEntity> reparaciones = reparacionService.getReparacionesVehiculoEsteAno(vehiculo);

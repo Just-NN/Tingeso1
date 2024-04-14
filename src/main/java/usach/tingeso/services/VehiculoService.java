@@ -12,6 +12,7 @@ public class VehiculoService {
     @Autowired
     VehiculoRepository vehiculoRepository;
 
+    // No se trabaja demasiado con los vehiculos, así que se implementa el CRUD básico
 
     public List<VehiculoEntity> getVehiculos() {
         return vehiculoRepository.findAll();

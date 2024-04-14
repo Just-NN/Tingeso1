@@ -33,6 +33,11 @@ public class VehiculoController {
     public ResponseEntity<VehiculoEntity> updateVehiculo(@RequestBody VehiculoEntity vehiculo){
         return ResponseEntity.ok(vehiculoService.saveVehiculo(vehiculo));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteVehiculo(@PathVariable Long id){
+        return ResponseEntity.ok(vehiculoService.deleteVehiculo(id));
+    }
+
 
 
 }

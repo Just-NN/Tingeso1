@@ -43,6 +43,19 @@ public class ReparacionController {
 
         return ResponseEntity.ok("Reparacion y boleta creadas exitosamente");
     }
+    @PutMapping("/")
+    public ResponseEntity<ReparacionEntity> updateReparacion(@RequestBody ReparacionEntity reparacion){
+        return ResponseEntity.ok(reparacionService.saveReparacion(reparacion));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteReparacion(@PathVariable Long id){
+        return ResponseEntity.ok(reparacionService.deleteReparacion(id));
+    }
+    @GetMapping("/reparacion/{vehiculo}")
+    public ResponseEntity<List<ReparacionEntity>> getReparacionesByVehiculo(@PathVariable VehiculoEntity vehiculo){
+        return ResponseEntity.ok(reparacionService.getReparacionesByVehiculo(vehiculo));
+    }
+
 
 
 }

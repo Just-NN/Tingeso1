@@ -21,6 +21,7 @@ public interface ReparacionRepository extends JpaRepository<ReparacionEntity, Lo
     @Query("SELECT r FROM ReparacionEntity r WHERE r.vehiculoEntity = :vehiculo AND r.fechaIngreso >= :fecha")
     List<ReparacionEntity> findByVehiculoEsteAno(@Param("vehiculo") VehiculoEntity vehiculo, @Param("fecha") Calendar fecha);
 
+    List<ReparacionEntity> findByVehiculoEntity(VehiculoEntity vehiculoEntity);
 
 }
 

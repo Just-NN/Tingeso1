@@ -29,12 +29,12 @@ public class BoletaEntity {
     @PrimaryKeyJoinColumn
     private ReparacionEntity reparacionEntity;
 
-    private double recargoPorKM;
-    private double recargoPorAntiguedad;
-    private double recargoPorRetraso; // estas 3 líneas podrían irse a
-    private double descuentoPorReparaciones;
-    private double descuentoPorDia;
-    private double descuentoPorBono;// una 3era entidad que me facilite las cosas
+    private int recargoPorKM;
+    private int recargoPorAntiguedad;
+    private int recargoPorRetraso; // estas 3 líneas podrían irse a
+    private int descuentoPorReparaciones;
+    private int descuentoPorDia;
+    private int descuentoPorBono;// una 3era entidad que me facilite las cosas
     private int precioBase; //
-    private double precioTotal;
+    private int precioTotal;
 }

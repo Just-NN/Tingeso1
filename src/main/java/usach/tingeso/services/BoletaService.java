@@ -24,6 +24,8 @@ public class BoletaService {
     @Autowired
     BoletaRepository boletaRepository;
 
+
+    // CRUD normal
     public List<BoletaEntity> getBoletas(){
         return boletaRepository.findAll();
     }
@@ -31,17 +33,20 @@ public class BoletaService {
     public BoletaEntity getBoletaById(Long id) {
         return (BoletaEntity) boletaRepository.findById(id).orElse(null);
     }
+    public BoletaEntity getBoletaByReparacion(ReparacionEntity reparacion){
+        return boletaRepository.findByReparacionEntity(reparacion);
+    }
     public BoletaEntity saveBoleta(BoletaEntity boleta){
         return (BoletaEntity) boletaRepository.save(boleta);
     }
     public BoletaEntity updateBoleta(BoletaEntity boleta){
-
         return (BoletaEntity) boletaRepository.save(boleta);
     }
     public boolean deleteBoleta(Long id){
         boletaRepository.deleteById(id);
         return true;
     }
+
     //--------------------------------------------------------------------------------------------------------------
     // Calcular cada valor para guardarlo en la boleta
 
