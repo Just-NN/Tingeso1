@@ -56,14 +56,14 @@ public class VehiculoControllerTest {
         vehiculo1.setAsientos(5);
 
         VehiculoEntity vehiculo2 = new VehiculoEntity();
-        vehiculo1.setPatente(1L);
-        vehiculo1.setMarca("awa");
-        vehiculo1.setModelo("xd");
-        vehiculo1.setTipoVehiculo(1);
-        vehiculo1.setKilometraje(10000);
-        vehiculo1.setAno(2020);
-        vehiculo1.setTipoMotor(1);
-        vehiculo1.setAsientos(5);
+        vehiculo2.setPatente(2L);
+        vehiculo2.setMarca("awa");
+        vehiculo2.setModelo("xd");
+        vehiculo2.setTipoVehiculo(1);
+        vehiculo2.setKilometraje(10000);
+        vehiculo2.setAno(2020);
+        vehiculo2.setTipoMotor(1);
+        vehiculo2.setAsientos(5);
 
         List<VehiculoEntity> vehiculos = Arrays.asList(vehiculo1, vehiculo2);
 
