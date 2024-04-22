@@ -38,8 +38,7 @@ public class VehiculoController {
     }
     @PostMapping("/")
     public ResponseEntity<VehiculoEntity> saveVehiculo(@RequestBody VehiculoEntity vehiculo){
-        VehiculoEntity vehiculoEntity = vehiculoService.getVehiculoById(vehiculo.getPatente());
-        if(vehiculoEntity != null){
+        if(vehiculo != null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Vehicle already exists");
         }
         return ResponseEntity.ok(vehiculoService.saveVehiculo(vehiculo));
@@ -48,13 +47,18 @@ public class VehiculoController {
     public ResponseEntity<VehiculoEntity> updateVehiculo(@RequestBody VehiculoEntity vehiculo){
         VehiculoEntity vehiculoEntity = vehiculoService.getVehiculoById(vehiculo.getPatente());
         if(vehiculoEntity == null){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Vehicle not found");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "BAD REQUEST");
         }
         return ResponseEntity.ok(vehiculoService.saveVehiculo(vehiculo));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteVehiculo(@PathVariable Long id){
-        return ResponseEntity.ok(vehiculoService.deleteVehiculo(id));
+        VehiculoEntity vehiculoEntity = vehiculoService.getVehiculoById(id);
+        if(vehiculoEntity == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Vehicle not found");
+        }
+        vehiculoService.deleteVehiculo(id);
+        return ResponseEntity.ok("Vehicle deleted successfully");
     }
 
 

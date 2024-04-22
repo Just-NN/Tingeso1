@@ -169,11 +169,11 @@ public class VehiculoControllerTest {
 
         given(vehiculoService.saveVehiculo(vehiculo)).willReturn(vehiculo);
         String vehiculoJson = "{\"patente\":1,\"marca\":\"Toyota\",\"modelo\":\"Corolla\",\"tipoVehiculo\":1,\"kilometraje\":10000,\"ano\":2020,\"tipoMotor\":1,\"asientos\":5}";
-        mockMvc.perform(put("/api/v1/vehiculo/")
+        mockMvc.perform(post("/api/v1/vehiculo/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(vehiculoJson))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.patente", is(1L)))
+                .andExpect(jsonPath("$.patente", is(1)))
                 .andExpect(jsonPath("$.marca", is("Toyota")))
                 .andExpect(jsonPath("$.modelo", is("Corolla")))
                 .andExpect(jsonPath("$.tipoVehiculo", is(1)))
@@ -181,6 +181,40 @@ public class VehiculoControllerTest {
                 .andExpect(jsonPath("$.ano", is(2020)))
                 .andExpect(jsonPath("$.tipoMotor", is(1)))
                 .andExpect(jsonPath("$.asientos", is(5)));
+    }
+    @Test
+    public void testUpdateVehiculoBadRequest() throws Exception {
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setPatente(1L);
+        vehiculo.setMarca("Toyota");
+        vehiculo.setModelo("Corolla");
+        vehiculo.setTipoVehiculo(1);
+        vehiculo.setKilometraje(10000);
+        vehiculo.setAno(2020);
+        vehiculo.setTipoMotor(1);
+        vehiculo.setAsientos(5);
+
+        given(vehiculoService.getVehiculoById(1L)).willReturn(null);
+        String vehiculoJson = "";
+        mockMvc.perform(post("/api/v1/vehiculo/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(vehiculoJson))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void testDeleteVehiculo() throws Exception {
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setPatente(1L);
+        given(vehiculoService.getVehiculoById(1L)).willReturn(vehiculo);
+        given(vehiculoService.deleteVehiculo(1L)).willReturn(true);
+        mockMvc.perform(delete("/api/v1/vehiculo/1"))
+                .andExpect(status().isOk());
+    }
+    @Test
+    public void testDeleteVehiculoNotFound() throws Exception {
+        given(vehiculoService.deleteVehiculo(1L)).willReturn(false);
+        mockMvc.perform(delete("/api/v1/vehiculo/1"))
+                .andExpect(status().isNotFound());
     }
 
 }

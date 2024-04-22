@@ -25,14 +25,25 @@ public class ReparacionController {
 
     @GetMapping("/")
     public ResponseEntity<List<ReparacionEntity>> getReparaciones(){
+        List<ReparacionEntity> reparaciones = reparacionService.getReparaciones();
+        if(reparaciones == null){
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(reparacionService.getReparaciones());
     }
     @GetMapping("/{id}")
     public ResponseEntity<ReparacionEntity> getReparacionById(@PathVariable Long id){
+        ReparacionEntity reparacion = reparacionService.getReparacionById(id);
+        if(reparacion == null){
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(reparacionService.getReparacionById(id));
     }
     @PostMapping("/")
     public ResponseEntity<?> saveReparacion(@RequestBody ReparacionEntity reparacion){
+        if(reparacion == null){
+            return ResponseEntity.badRequest().build();
+        }
         ReparacionEntity reparacionEntity = reparacion;
         BoletaEntity boletaEntity = new BoletaEntity();
         boletaEntity = boletaService.saveBoleta(boletaEntity);
@@ -45,14 +56,25 @@ public class ReparacionController {
     }
     @PutMapping("/")
     public ResponseEntity<ReparacionEntity> updateReparacion(@RequestBody ReparacionEntity reparacion){
+        if(reparacion == null){
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(reparacionService.saveReparacion(reparacion));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteReparacion(@PathVariable Long id){
+        ReparacionEntity reparacion = reparacionService.getReparacionById(id);
+        if(reparacion == null){
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(reparacionService.deleteReparacion(id));
     }
     @GetMapping("/reparacion/{vehiculo}")
     public ResponseEntity<List<ReparacionEntity>> getReparacionesByVehiculo(@PathVariable VehiculoEntity vehiculo){
+        List<ReparacionEntity> reparaciones = reparacionService.getReparacionesByVehiculo(vehiculo);
+        if(reparaciones == null){
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(reparacionService.getReparacionesByVehiculo(vehiculo));
     }
 
