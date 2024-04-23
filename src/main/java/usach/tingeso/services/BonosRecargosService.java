@@ -85,16 +85,18 @@ public class BonosRecargosService {
                     } else {
                         recargoAntiguedad = 0.15;
                     }
+                    break; // Add this
                 case 2: // Caso SUV/Pickup/Furgoneta
                 case 3:
                 case 4:
-                    if (antiguedad < 12000) {
+                    if (antiguedad < 12) {
                         recargoAntiguedad = 0.07;
-                    } else if (antiguedad > 12000 && antiguedad < 25000) {
+                    } else if (antiguedad > 12 && antiguedad < 25) {
                         recargoAntiguedad = 0.11;
                     } else {
                         recargoAntiguedad = 0.2;
                     }
+                    break; // Add this
             }
         }
         return recargoAntiguedad;
@@ -107,71 +109,68 @@ public class BonosRecargosService {
 
     // Calcula cada descuento
     public double calcularDescuentoPorReparaciones(ReparacionEntity reparacion){
-    VehiculoEntity vehiculo = reparacion.getVehiculoEntity();
-    List<ReparacionEntity> reparaciones = reparacionService.getReparacionesVehiculoEsteAno(vehiculo);
-    int cantidadReparaciones = reparaciones.size();
-    int tipoMotor = vehiculo.getTipoMotor();
-    if (cantidadReparaciones > 0){
-        switch (tipoMotor){
-            case 0: // Caso Gasolina
-                if (cantidadReparaciones < 3){
-                    return 0.05;
-                }
-                else if (cantidadReparaciones >= 3 && cantidadReparaciones < 6){
-                    return 0.10;
-                }
-                else if (cantidadReparaciones >= 6 && cantidadReparaciones < 10){
-                    return 0.15;
-                }
-                else {
-                    return 0.2;
-                }
-            case 1: // Caso Diésel
-                if (cantidadReparaciones < 3){
-                    return 0.07;
-                }
-                else if (cantidadReparaciones >= 3 && cantidadReparaciones < 6){
-                    return 0.12;
-                }
-                else if (cantidadReparaciones >= 6 && cantidadReparaciones < 10){
-                    return 0.17;
-                }
-                else {
-                    return 0.22;
-                }
-            case 2: // Caso Híbrido
-                if (cantidadReparaciones < 3){
-                    return 0.1;
-                }
-                else if (cantidadReparaciones >= 3 && cantidadReparaciones < 6){
-                    return 0.15;
-                }
-                else if (cantidadReparaciones >= 6 && cantidadReparaciones < 10){
-                    return 0.2;
-                }
-                else {
-                    return 0.25;
-                }
-            case 3: // Caso Eléctrico
-                if (cantidadReparaciones < 3){
-                    return 0.08;
-                }
-                else if (cantidadReparaciones >= 3 && cantidadReparaciones < 6){
-                    return 0.13;
-                }
-                else if (cantidadReparaciones >= 6 && cantidadReparaciones < 10){
-                    return 0.18;
-                }
-                else {
-                    return 0.23;
-                }
+        VehiculoEntity vehiculo = reparacion.getVehiculoEntity();
+        List<ReparacionEntity> reparaciones = reparacionService.getReparacionesVehiculoEsteAno(vehiculo);
+        int cantidadReparaciones = reparaciones.size();
+        int tipoMotor = vehiculo.getTipoMotor();
+        if (cantidadReparaciones > 0){
+            switch (tipoMotor){
+                case 0: // Caso Gasolina
+                    if (cantidadReparaciones < 3){
+                        return 0.05;
+                    }
+                    else if (cantidadReparaciones >= 3 && cantidadReparaciones < 6){
+                        return 0.10;
+                    }
+                    else if (cantidadReparaciones >= 6 && cantidadReparaciones < 10){
+                        return 0.15;
+                    }
+                    else {
+                        return 0.2;
+                    }
+                case 1: // Caso Diésel
+                    if (cantidadReparaciones < 3){
+                        return 0.07;
+                    }
+                    else if (cantidadReparaciones >= 3 && cantidadReparaciones < 6){
+                        return 0.12;
+                    }
+                    else if (cantidadReparaciones >= 6 && cantidadReparaciones < 10){
+                        return 0.17;
+                    }
+                    else {
+                        return 0.22;
+                    }
+                case 2: // Caso Híbrido
+                    if (cantidadReparaciones < 3){
+                        return 0.1;
+                    }
+                    else if (cantidadReparaciones >= 3 && cantidadReparaciones < 6){
+                        return 0.15;
+                    }
+                    else if (cantidadReparaciones >= 6 && cantidadReparaciones < 10){
+                        return 0.2;
+                    }
+                    else {
+                        return 0.25;
+                    }
+                case 3: // Caso Eléctrico
+                    if (cantidadReparaciones < 3){
+                        return 0.08;
+                    }
+                    else if (cantidadReparaciones >= 3 && cantidadReparaciones < 6){
+                        return 0.13;
+                    }
+                    else if (cantidadReparaciones >= 6 && cantidadReparaciones < 10){
+                        return 0.18;
+                    }
+                    else {
+                        return 0.23;
+                    }
+            }
         }
+        return 0;
     }
-    else{
-        return -1;
-    }
-    return 0;
-}
     public double calcularDescuentoPorDia(ReparacionEntity reparacion){
         Calendar fechaIngreso = Calendar.getInstance();
         fechaIngreso.setTime(reparacion.getFechaIngreso().getTime()); // Obtén el objeto Date del Calendar
