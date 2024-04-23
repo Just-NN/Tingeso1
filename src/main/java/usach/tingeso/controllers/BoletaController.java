@@ -29,19 +29,21 @@ public class BoletaController {
         }
         return ResponseEntity.ok(boletas);
     }
-    @GetMapping("/{reparacion}")
-    public ResponseEntity<BoletaEntity> getBoletaByReparacion(@PathVariable ReparacionEntity reparacion){
+    @GetMapping("/{idReparacion}")
+    public ResponseEntity<BoletaEntity> getBoletaByReparacion(@PathVariable Long idReparacion){
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setIdReparacion(idReparacion);
         BoletaEntity boleta = boletaService.getBoletaByReparacion(reparacion);
         if(boleta == null){
-            throw new ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND, "Boleta not found");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return ResponseEntity.ok(boleta);
     }
+
     @PostMapping("/")
     public ResponseEntity<BoletaEntity> saveBoleta(@RequestBody BoletaEntity boleta){
-
-        if(boleta==null){
-            throw new ResponseStatusException(org.springframework.http.HttpStatus.BAD_REQUEST, "Boleta already exists");
+        if(boleta == null || boleta.getIdBoleta() == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Boleta");
         }
         return ResponseEntity.ok(boletaService.saveBoleta(boleta));
     }
@@ -85,8 +87,8 @@ public class BoletaController {
 //    }
     @PutMapping("/init/")
     public ResponseEntity<?> inicializarBoleta(@RequestBody BoletaEntity boleta){
-        if(boleta==null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Boleta already exists");
+        if(boleta==null || boleta.getIdBoleta()==null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Boleta invalida");
         }
         boletaService.guardarRecargoPorKM(boleta);
         boletaService.guardarRecargoPorAntiguedad(boleta);

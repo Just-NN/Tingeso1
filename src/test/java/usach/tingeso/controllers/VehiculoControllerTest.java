@@ -146,13 +146,11 @@ public class VehiculoControllerTest {
                 .andExpect(jsonPath("$.tipoMotor", is(1)))
                 .andExpect(jsonPath("$.asientos", is(5)));
     }
-    @Test
-    public void testSaveVehiculoBadRequest() throws Exception {
-        String vehiculoJson = "";
 
+    @Test
+    public void testSaveVehiculoNullInput() throws Exception {
         mockMvc.perform(post("/api/v1/vehiculo/")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(vehiculoJson))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
     @Test
@@ -167,9 +165,12 @@ public class VehiculoControllerTest {
         vehiculo.setTipoMotor(1);
         vehiculo.setAsientos(5);
 
+        given(vehiculoService.getVehiculoById(1L)).willReturn(vehiculo);
         given(vehiculoService.saveVehiculo(vehiculo)).willReturn(vehiculo);
+
         String vehiculoJson = "{\"patente\":1,\"marca\":\"Toyota\",\"modelo\":\"Corolla\",\"tipoVehiculo\":1,\"kilometraje\":10000,\"ano\":2020,\"tipoMotor\":1,\"asientos\":5}";
-        mockMvc.perform(post("/api/v1/vehiculo/")
+
+        mockMvc.perform(put("/api/v1/vehiculo/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(vehiculoJson))
                 .andExpect(status().isOk())
@@ -195,12 +196,15 @@ public class VehiculoControllerTest {
         vehiculo.setAsientos(5);
 
         given(vehiculoService.getVehiculoById(1L)).willReturn(null);
-        String vehiculoJson = "";
-        mockMvc.perform(post("/api/v1/vehiculo/")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(vehiculoJson))
+
+        String vehiculoJson = "{\"patente\":1,\"marca\":\"Toyota\",\"modelo\":\"Corolla\",\"tipoVehiculo\":1,\"kilometraje\":10000,\"ano\":2020,\"tipoMotor\":1,\"asientos\":5}";
+
+        mockMvc.perform(put("/api/v1/vehiculo/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(vehiculoJson))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void testDeleteVehiculo() throws Exception {
         VehiculoEntity vehiculo = new VehiculoEntity();

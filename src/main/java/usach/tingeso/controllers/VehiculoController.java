@@ -38,7 +38,7 @@ public class VehiculoController {
     }
     @PostMapping("/")
     public ResponseEntity<VehiculoEntity> saveVehiculo(@RequestBody VehiculoEntity vehiculo){
-        if(vehiculo != null){
+        if(vehiculo == null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Vehicle already exists");
         }
         return ResponseEntity.ok(vehiculoService.saveVehiculo(vehiculo));

@@ -61,12 +61,12 @@ public class ReparacionEntity {
     return zdt.toLocalTime();
 }
 
-public DayOfWeek getDiaDeSemana(){
-    if (this.fechaIngreso == null) {
-        // return a default value or throw an exception
-        return null;
+    public DayOfWeek getDiaDeSemana(){
+        if (this.fechaIngreso == null) {
+            // return a default value or throw an exception
+            return null;
+        }
+        return fechaIngreso.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate().getDayOfWeek();
     }
-    return fechaIngreso.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate().getDayOfWeek();
-}
 
 }
