@@ -312,11 +312,211 @@ public class BonosRecargosServiceTest {
         vehiculo.setTipoMotor(0);
         reparacion.setVehiculoEntity(vehiculo);
 
-        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity()));
 
         double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
         assertThat(descuentoReparaciones).isEqualTo(0.05);
     }
+
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento10() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(0);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.1);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento15() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(0);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.15);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento2() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(0);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.2);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento07() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(1);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.07);
+    }
+
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento12() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(1);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.12);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento17() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(1);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.17);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento22() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(1);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.22);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento2_1() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(2);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.1);
+    }
+
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento2_15() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(2);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.15);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento2_2() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(2);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.2);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento25() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(2);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.25);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento08() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(3);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.08);
+    }
+
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento13() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(3);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.13);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento18() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(3);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.18);
+    }
+    @Test
+    public void whenCalcularDescuentoPorReparaciones_thenDescuento23() {
+        ReparacionEntity reparacion = new ReparacionEntity();
+        reparacion.setFechaIngreso(new GregorianCalendar(2024, Calendar.JANUARY, 1));
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setTipoMotor(3);
+        reparacion.setVehiculoEntity(vehiculo);
+
+        when(reparacionService.getReparacionesVehiculoEsteAno(vehiculo)).thenReturn(Arrays.asList(new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity(), new ReparacionEntity()));
+
+        double descuentoReparaciones = bonosRecargosService.calcularDescuentoPorReparaciones(reparacion);
+        assertThat(descuentoReparaciones).isEqualTo(0.23);
+    }
+
 
 
 
