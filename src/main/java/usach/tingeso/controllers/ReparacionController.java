@@ -43,9 +43,6 @@ public class ReparacionController {
     }
     @PostMapping("/")
     public ResponseEntity<ReparacionEntity> saveReparacion(@RequestBody ReparacionEntity reparacion) {
-        if (reparacion.getIdReparacion() == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         ReparacionEntity savedReparacion = reparacionService.saveReparacion(reparacion);
         if (savedReparacion == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

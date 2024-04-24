@@ -1,5 +1,6 @@
 package usach.tingeso.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,9 +26,8 @@ public class BoletaEntity {
     @Column(unique = true, nullable = false)
     private Long idBoleta;
 
-    @OneToOne(mappedBy = "boletaEntity")
-    @PrimaryKeyJoinColumn
-    private ReparacionEntity reparacionEntity;
+
+    /// Boleta y Reparación compartirán ID así que no lo usaré aquí
 
     private int recargoPorKM;
     private int recargoPorAntiguedad;

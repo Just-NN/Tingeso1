@@ -61,7 +61,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
             ReparacionEntity reparacion = new ReparacionEntity();
             reparacion.setIdReparacion(1L);
 
-            given(boletaService.getBoletaByReparacion(reparacion)).willReturn(boleta);
             given(boletaService.getBoletaById(1L)).willReturn(boleta);
 
             mockMvc.perform(get("/api/v1/boleta/" + reparacion.getIdReparacion()))
@@ -82,18 +81,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                     .andExpect(status().isOk());
         }
 
-        @Test
-        public void testUpdateBoleta() throws Exception {
-            BoletaEntity boleta = new BoletaEntity();
-            boleta.setIdBoleta(1L);
+    @Test
+    public void testUpdateBoleta() throws Exception {
+        BoletaEntity boleta = new BoletaEntity();
+        boleta.setIdBoleta(1L);
 
-            given(boletaService.saveBoleta(Mockito.any())).willReturn(boleta);
+        given(boletaService.getBoletaById(1L)).willReturn(boleta);
+        given(boletaService.saveBoleta(Mockito.any())).willReturn(boleta);
 
-            mockMvc.perform(put("/api/v1/boleta/")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"idBoleta\":1}"))
-                    .andExpect(status().isOk());
-        }
+        mockMvc.perform(put("/api/v1/boleta/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"idBoleta\":1}"))
+                .andExpect(status().isOk());
+    }
 
         @Test
         public void testDeleteBoleta() throws Exception {
@@ -129,16 +129,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         @Test
         public void testSaveBoleta_BadRequest() throws Exception {
             mockMvc.perform(post("/api/v1/boleta/")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"invalidKey\":1}"))
+                            .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isBadRequest());
         }
 
         @Test
         public void testUpdateBoleta_BadRequest() throws Exception {
-            mockMvc.perform(put("/api/v1/boleta/")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"invalidKey\":1}"))
+            // Given
+            Long id = 1L;
+            when(boletaService.getBoletaById(id)).thenReturn(null);
+
+            // When & Then
+            mockMvc.perform(put("/api/v1/boleta/").contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isBadRequest());
         }
 

@@ -20,6 +20,131 @@ public class BonosRecargosService {
 
     @Autowired
     ReparacionService reparacionService;
+
+
+    // Calcula el precio base
+    public int calcularPrecioBase(ReparacionEntity reparacion) {
+        int tipoMotor = reparacion.getVehiculoEntity().getTipoMotor();
+        int tipoReparacion = reparacion.getTipoReparacion();
+        if (tipoReparacion >= 1 && tipoReparacion <= 11) {
+            System.out.printf("Tipo de reparación: %d\n", tipoReparacion);
+            if (tipoMotor >= 0 && tipoMotor <= 3) {
+                System.out.println("Tipo de motor: " + tipoMotor);
+                switch (tipoReparacion) {
+                    case 1: // Caso Mantención
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                            case 1: // Caso Diésel
+                                return 120000;
+                            case 2: // Caso Híbrido
+                                return 180000;
+                            case 3: // Caso Eléctrico
+                                return 220000;
+                        }
+                    case 2: // Caso Frenos
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                            case 1: // Caso Diésel
+                                return 130000;
+                            case 2: // Caso Híbrido
+                                return 190000;
+                            case 3: // Caso Eléctrico
+                                return 230000;
+                        }
+                    case 3: // Caso Aceite
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                                return 350000;
+                            case 1: // Caso Diésel
+                                return 450000;
+                            case 2: // Caso Híbrido
+                                return 700000;
+                            case 3: // Caso Eléctrico
+                                return 800000;
+                        }
+                        return 60000;
+                    case 4: // Caso Neumáticos
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                            case 1: // Caso Diésel
+                                return 210000;
+                            case 2: // Caso Híbrido
+                            case 3: // Caso Eléctrico
+                                return 300000;
+                        }
+                    case 5: // Caso Batería
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                            case 1: // Caso Diésel
+                                return 150000;
+                            case 2: // Caso Híbrido
+                                return 200000;
+                            case 3: // Caso Eléctrico
+                                return 250000;
+                        }
+                    case 6: // Caso Suspensión
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                                return 100000;
+                            case 1: // Caso Diésel
+                                return 120000;
+                            case 2: // Caso Híbrido
+                                return 450000;
+                            case 3: // Caso Eléctrico
+                                return 0;
+                        }
+                    case 7: // Caso Dirección
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                            case 1: // Caso Diésel
+                                return 80000;
+                            case 2: // Caso Híbrido
+                            case 3: // Caso Eléctrico
+                                return 100000;
+                        }
+                    case 8: // Caso Embrague
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                            case 1: // Caso Diésel
+                                return 180000;
+                            case 2: // Caso Híbrido
+                                return 210000;
+                            case 3: // Caso Eléctrico
+                                return 250000;
+                        }
+                    case 9:
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                            case 1: // Caso Diésel
+                                return 150000;
+                            case 2: // Caso Híbrido
+                            case 3: // Caso Eléctrico
+                                return 180000;
+                        }
+                    case 10:
+                        switch (tipoMotor) {
+                            case 0: // Caso Gasolina
+                                return 130000;
+                            case 1: // Caso Diésel
+                                return 140000;
+                            case 2: // Caso Híbrido
+                                return 220000;
+                            case 3: // Caso Eléctrico
+                                return 0;
+                        }
+                    case 11:
+                        return 80000;
+                }
+
+            }
+        }
+        return -1;
+    }
+
+
+
+
+
     // Calcula cada recargo
 
     // Calcula recargo por kilometraje
@@ -199,6 +324,10 @@ public class BonosRecargosService {
         }
         return precioFinal;
     }
+
+
+
+
 
 
 

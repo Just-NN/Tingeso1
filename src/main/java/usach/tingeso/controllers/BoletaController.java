@@ -33,7 +33,7 @@ public class BoletaController {
     public ResponseEntity<BoletaEntity> getBoletaByReparacion(@PathVariable Long idReparacion){
         ReparacionEntity reparacion = new ReparacionEntity();
         reparacion.setIdReparacion(idReparacion);
-        BoletaEntity boleta = boletaService.getBoletaByReparacion(reparacion);
+        BoletaEntity boleta = boletaService.getBoletaById(reparacion.getIdReparacion());
         if(boleta == null){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -42,14 +42,15 @@ public class BoletaController {
 
     @PostMapping("/")
     public ResponseEntity<BoletaEntity> saveBoleta(@RequestBody BoletaEntity boleta){
-        if(boleta == null || boleta.getIdBoleta() == null){
+        if(boleta == null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Boleta");
         }
         return ResponseEntity.ok(boletaService.saveBoleta(boleta));
     }
     @PutMapping("/")
     public ResponseEntity<BoletaEntity> updateBoleta(@RequestBody BoletaEntity boleta){
-        if(boleta==null){
+        BoletaEntity boletaAux = boletaService.getBoletaById(boleta.getIdBoleta());
+        if(boletaAux==null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "NOT FOUND");
         }
         return ResponseEntity.ok(boletaService.saveBoleta(boleta));
@@ -90,6 +91,7 @@ public class BoletaController {
         if(boleta==null || boleta.getIdBoleta()==null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Boleta invalida");
         }
+        boletaService.guardarPrecioBase(boleta);
         boletaService.guardarRecargoPorKM(boleta);
         boletaService.guardarRecargoPorAntiguedad(boleta);
         boletaService.guardarDescuentoPorDia(boleta);

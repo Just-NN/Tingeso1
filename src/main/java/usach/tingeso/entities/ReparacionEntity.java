@@ -33,13 +33,8 @@ public class ReparacionEntity {
     @JoinColumn(name = "patente")
     private VehiculoEntity vehiculoEntity;
 
-    @Getter
-    @OneToOne
-    @JsonIgnore
-    @MapsId
-    @JoinColumn(name = "idBoleta", nullable = true)
-    private BoletaEntity boletaEntity;
-
+    // Boleta y Reparación compartirán ID así que no lo usaré aquí
+    private int tipoReparacion;
     private Calendar fechaIngreso;
     private Calendar fechaSalida;
     private LocalTime horaSalida;

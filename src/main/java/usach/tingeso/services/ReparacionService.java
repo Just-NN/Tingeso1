@@ -3,8 +3,10 @@ package usach.tingeso.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import usach.tingeso.entities.BoletaEntity;
 import usach.tingeso.entities.ReparacionEntity;
 import usach.tingeso.entities.VehiculoEntity;
+import usach.tingeso.repositories.BoletaRepository;
 import usach.tingeso.repositories.ReparacionRepository;
 
 import java.util.Calendar;
@@ -14,7 +16,8 @@ import java.util.List;
 public class ReparacionService {
     @Autowired
     ReparacionRepository reparacionRepository;
-
+    @Autowired
+    private BoletaRepository boletaRepository;
 
 
     public List<ReparacionEntity> getReparaciones(){
@@ -33,6 +36,9 @@ public class ReparacionService {
         return reparacionRepository.findById(id).orElse(null);
     }
     public ReparacionEntity saveReparacion(ReparacionEntity reparacion){
+        BoletaEntity boleta = new BoletaEntity();
+        boleta.setIdBoleta(reparacion.getIdReparacion());
+        boletaRepository.save(boleta);
         return reparacionRepository.save(reparacion);
     }
     public ReparacionEntity UpdateReparacion(ReparacionEntity reparacion){

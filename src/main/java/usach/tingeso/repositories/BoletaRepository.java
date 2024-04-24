@@ -16,5 +16,4 @@ import java.util.List;
 public interface BoletaRepository extends JpaRepository<BoletaEntity, Long>{
     public BoletaEntity findById(long id);
 
-    BoletaEntity findByReparacionEntity(ReparacionEntity reparacion);
 }
