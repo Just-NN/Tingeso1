@@ -36,10 +36,12 @@ public class ReparacionService {
         return reparacionRepository.findById(id).orElse(null);
     }
     public ReparacionEntity saveReparacion(ReparacionEntity reparacion){
+        ReparacionEntity savedReparacion = reparacionRepository.save(reparacion);
         BoletaEntity boleta = new BoletaEntity();
-        boleta.setIdBoleta(reparacion.getIdReparacion());
+        boleta.setIdReparacion(savedReparacion.getIdReparacion());
         boletaRepository.save(boleta);
-        return reparacionRepository.save(reparacion);
+        savedReparacion.setIdBoleta(boleta.getIdBoleta());
+        return savedReparacion;
     }
     public ReparacionEntity UpdateReparacion(ReparacionEntity reparacion){
         return reparacionRepository.save(reparacion);

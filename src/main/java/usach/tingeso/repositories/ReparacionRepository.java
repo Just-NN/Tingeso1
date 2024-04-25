@@ -23,6 +23,7 @@ public interface ReparacionRepository extends JpaRepository<ReparacionEntity, Lo
 
     List<ReparacionEntity> findByVehiculoEntity(VehiculoEntity vehiculoEntity);
 
+
 }
 
 

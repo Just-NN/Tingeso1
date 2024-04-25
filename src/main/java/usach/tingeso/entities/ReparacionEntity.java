@@ -34,6 +34,8 @@ public class ReparacionEntity {
     private VehiculoEntity vehiculoEntity;
 
     // Boleta y Reparación compartirán ID así que no lo usaré aquí
+    private Long idBoleta;
+
     private int tipoReparacion;
     private Calendar fechaIngreso;
     private Calendar fechaSalida;

@@ -5,6 +5,7 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.DayOfWeek;
@@ -26,8 +27,8 @@ public class BoletaEntity {
     @Column(unique = true, nullable = false)
     private Long idBoleta;
 
-
-    /// Boleta y Reparación compartirán ID así que no lo usaré aquí
+    @Getter
+    private Long idReparacion;
 
     private int recargoPorKM;
     private int recargoPorAntiguedad;
@@ -37,4 +38,6 @@ public class BoletaEntity {
     private int descuentoPorBono;// una 3era entidad que me facilite las cosas
     private int precioBase; //
     private int precioTotal;
+
+
 }
