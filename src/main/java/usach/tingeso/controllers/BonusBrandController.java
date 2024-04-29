@@ -9,6 +9,7 @@ import usach.tingeso.services.BonusBrandService;
 
 @RestController
 @RequestMapping("api/v1/bonusBrand")
+@CrossOrigin(origins = "*")
 public class BonusBrandController {
 
     @Autowired

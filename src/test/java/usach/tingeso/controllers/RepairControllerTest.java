@@ -89,7 +89,9 @@ public class RepairControllerTest {
     @Test
     public void testUpdateRepair() {
         RepairEntity repair = new RepairEntity();
-        when(repairService.getRepairById(1L)).thenReturn(repair);
+        repair.setIdRepair(1L); // Set the ID of the repair
+
+        when(repairService.getRepairById(repair.getIdRepair())).thenReturn(repair);
         when(repairService.updateRepair(repair)).thenReturn(repair);
 
         ResponseEntity<RepairEntity> response = repairController.updateRepair(repair);

@@ -87,7 +87,9 @@ public class TicketControllerTest {
     @Test
     public void testUpdateTicket() {
         TicketEntity ticket = new TicketEntity();
-        when(ticketService.getTicketById(1L)).thenReturn(ticket);
+        ticket.setIdTicket(1L); // Set the ID of the ticket
+
+        when(ticketService.getTicketById(ticket.getIdTicket())).thenReturn(ticket);
         when(ticketService.updateTicket(ticket)).thenReturn(ticket);
 
         ResponseEntity<TicketEntity> response = ticketController.updateTicket(ticket);
@@ -265,6 +267,30 @@ public class TicketControllerTest {
     public void testSaveTotalPriceBadRequest() {
         ResponseEntity<TicketEntity> response = ticketController.saveTotalPrice(null);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+    // Test for saveInit
+    @Test
+    public void testSaveInitBadRequest() {
+        ResponseEntity<TicketEntity> response = ticketController.saveInit(null);
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+    @Test
+    public void testSaveInit() {
+        TicketEntity ticket = new TicketEntity();
+        when(ticketService.savePickupDate(ticket)).thenReturn(ticket);
+        when(ticketService.saveBasePrice(ticket)).thenReturn(ticket);
+        when(ticketService.saveKMSurcharge(ticket)).thenReturn(ticket);
+        when(ticketService.saveAgeSurcharge(ticket)).thenReturn(ticket);
+        when(ticketService.saveSurchargeForDelay(ticket)).thenReturn(ticket);
+        when(ticketService.saveDiscountByRepairs(ticket)).thenReturn(ticket);
+        when(ticketService.saveDiscountByDay(ticket)).thenReturn(ticket);
+        when(ticketService.saveBrandBonus(ticket)).thenReturn(ticket);
+        when(ticketService.saveTotalPrice(ticket)).thenReturn(ticket);
+
+        ResponseEntity<TicketEntity> response = ticketController.saveInit(ticket);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(ticket, response.getBody());
     }
 
 }

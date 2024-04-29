@@ -87,7 +87,9 @@ public class ReportControllerTest {
     @Test
     public void testUpdateReport() {
         ReportEntity report = new ReportEntity();
-        when(reportService.getReportById(1L)).thenReturn(report);
+        report.setIdReport(1L); // Set the ID of the report
+
+        when(reportService.getReportById(report.getIdReport())).thenReturn(report);
         when(reportService.updateReport(report)).thenReturn(report);
 
         ResponseEntity<ReportEntity> response = reportController.updateReport(report);
@@ -166,5 +168,24 @@ public class ReportControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
-    // Add more tests for other methods...
+    // Test for saveInit
+    @Test
+    public void testSaveInitBadRequest() {
+        ResponseEntity<ReportEntity> response = reportController.saveInit(null);
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+    @Test
+    public void testSaveInit() {
+        ReportEntity report = new ReportEntity();
+        when(reportService.saveR1(report)).thenReturn(report);
+        when(reportService.saveR2(report)).thenReturn(report);
+        when(reportService.saveR3(report)).thenReturn(report);
+        when(reportService.saveR4(report)).thenReturn(report);
+
+        ResponseEntity<ReportEntity> response = reportController.saveInit(report);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(report, response.getBody());
+    }
+
 }

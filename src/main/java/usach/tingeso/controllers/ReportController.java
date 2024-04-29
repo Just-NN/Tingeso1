@@ -9,6 +9,7 @@ import usach.tingeso.services.ReportService;
 
 @RestController
 @RequestMapping("api/v1/report")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ReportController {
 
     @Autowired
@@ -80,4 +81,19 @@ public class ReportController {
         }
         return ResponseEntity.ok(reportService.saveR4(report));
     }
+    @CrossOrigin(origins = "localhost:5173")
+    @PutMapping("/init")
+    public ResponseEntity<ReportEntity> saveInit(@RequestBody ReportEntity report){
+        if (report == null) {
+            System.out.println("Error");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        reportService.saveR1(report);
+        reportService.saveR2(report);
+        reportService.saveR3(report);
+        reportService.saveR4(report);
+        return ResponseEntity.ok(report);
+
+    }
+
 }

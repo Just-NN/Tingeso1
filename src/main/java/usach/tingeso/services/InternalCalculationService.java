@@ -10,6 +10,8 @@ import usach.tingeso.repositories.BonusBrandRepository;
 import usach.tingeso.repositories.RepairRepository;
 import usach.tingeso.repositories.VehicleRepository;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
@@ -29,6 +31,9 @@ public class InternalCalculationService {
     // This is the service that will calculate the final price for the repair
 
     public int calculateBasePrice(RepairEntity repair) {
+        if (repair == null) {
+            return -1;
+        }
         Long licensePlate = repair.getLicensePlate();
         VehicleEntity vehicle = vehicleRepository.findVehicleByLicensePlate(licensePlate);
         int engineType = vehicle.getEngineType();
@@ -60,6 +65,9 @@ public class InternalCalculationService {
 
     // Calculate the surcharge for the kilometers
     public double calculateSurchargeForKM(RepairEntity repair){
+        if (repair == null) {
+            return -1;
+        }
         Long licensePlate = repair.getLicensePlate();
         VehicleEntity vehicle = vehicleRepository.findVehicleByLicensePlate(licensePlate);
         int engineType = vehicle.getEngineType();
@@ -102,6 +110,9 @@ public class InternalCalculationService {
         return surchargeKM;
     }
     public double calculateSurchargeByAge(RepairEntity repair) {
+        if (repair == null) {
+            return -1;
+        }
         Long licensePlate = repair.getLicensePlate();
         VehicleEntity vehicle = vehicleRepository.findVehicleByLicensePlate(licensePlate);
         int engineType = vehicle.getEngineType();
@@ -142,10 +153,19 @@ public class InternalCalculationService {
 
     // Calculate the surcharge for the delay
     public double calculateSurchargeForDelay(RepairEntity repair){
+        if (repair == null) {
+            return -1;
+        }
         long delay = ChronoUnit.DAYS.between(repair.getEntryDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                 repair.getPickupDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        double delaySurcharge = -(delay)*0.05;
 
+        // This is to prevent round errors
+        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        df.setDecimalFormatSymbols(dfs);
+        double delaySurcharge = Double.valueOf(df.format(-(delay)*0.05));
+        System.out.println("Delay: " + delaySurcharge);
         // Save the surcharge in the RepairEntity
         repair.setDelaySurcharge(delaySurcharge);
         repairRepository.save(repair);
@@ -154,6 +174,9 @@ public class InternalCalculationService {
 
     // Calculate the discount by the number of repairs
     public double calculateDiscountByRepairs(RepairEntity repair){
+        if (repair == null) {
+            return -1;
+        }
         Long licensePlate = repair.getLicensePlate();
         VehicleEntity vehicle = vehicleRepository.findVehicleByLicensePlate(licensePlate);
         System.out.println("Vehicle: " + vehicle.getLicensePlate());
@@ -196,6 +219,9 @@ public class InternalCalculationService {
 
     // Calculate the discount by the day of the week
     public double calculateDiscountByDay(RepairEntity repair){
+        if (repair == null) {
+            return -1;
+        }
         Calendar entryDate = Calendar.getInstance();
         entryDate.setTime(repair.getEntryDate().getTime()); // Get the Date object from the Calendar
         int entryDay = entryDate.get(Calendar.DAY_OF_WEEK);
@@ -219,13 +245,16 @@ public class InternalCalculationService {
 
     // Calculate the total price for the ticket
     public double calculateTotalPrice(TicketEntity ticket){
+        if (ticket == null) {
+            return -1;
+        }
         double kmSurcharge = ticket.getSurchargeForKM();
         double ageSurcharge = ticket.getSurchargeForAge();
         double delaySurcharge = ticket.getSurchargeForDelay();
         double repairDiscount = ticket.getDiscountForRepairs();
         double dayDiscount = ticket.getDiscountPerDay();
         double finalPrice = 0;
-        if (kmSurcharge == -1 || ageSurcharge == -1 || repairDiscount == -1){
+        if (kmSurcharge < 0 || ageSurcharge < 0 || repairDiscount < 0){
             return -1;
         }
         else{

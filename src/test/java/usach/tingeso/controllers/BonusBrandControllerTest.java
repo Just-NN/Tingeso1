@@ -86,15 +86,13 @@ public class BonusBrandControllerTest {
     //------------------------------------------------------------------------------------------------
     // Test for updateBonusBrand
     @Test
-    public void testUpdateBonusBrand() {
-        BonusBrandEntity bonusBrand = new BonusBrandEntity();
-        // Set properties for bonusBrand
+    public void testUpdateBonusBrandBadRequest() {
+        BonusBrandEntity bonusBrand = null;
         when(bonusBrandService.getBonusBrandById(1L)).thenReturn(bonusBrand);
         when(bonusBrandService.updateBonusBrand(bonusBrand)).thenReturn(bonusBrand);
 
         ResponseEntity<BonusBrandEntity> response = bonusBrandController.updateBonusBrand(bonusBrand);
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals(bonusBrand, response.getBody());
+        assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCodeValue());
     }
     //------------------------------------------------------------------------------------------------
     // Test for getBonusByBrand

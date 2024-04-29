@@ -302,6 +302,7 @@ public class TicketService {
         // Get the BonusBrandEntity from the Optional and set it as inactive
         BonusBrandEntity bonusBrandEntity = brandBonus.get(0);
         bonusBrandEntity.setActive(false);
+        ticket.setIdBonus(bonusBrandEntity.getIdBonus());
         bonusBrandRepository.save(bonusBrandEntity);
         System.out.println("TERMINÉ");
         return ticket;
@@ -312,8 +313,12 @@ public class TicketService {
     public TicketEntity saveTotalPrice(TicketEntity ticket){
         List<RepairEntity> repairs = repairRepository.findRepairsByIdTicket(ticket.getIdTicket());
         double totalPrice = 0;
-
+        if (repairs.isEmpty()) {
+            System.out.println("No repairs found for ticket ID: " + ticket.getIdTicket());
+            return null;
+        }
         for (RepairEntity repair : repairs) {
+            System.out.println("Repair: " + repair.toString());
             if (ticket.getBasePrice() == 0) {
                 ticket = saveBasePrice(ticket);
             }
@@ -322,6 +327,33 @@ public class TicketService {
         }
 
         ticket.setTotalPrice((int) Math.round(totalPrice));
+        System.out.println("Total price: " + ticket.getTotalPrice());
+        System.out.println("Saved Ticket: " + ticket.toString());
         return ticketRepository.save(ticket);
+    }
+    //------------------------------------------------------------------------------------------------------------
+    // Setup pickup date
+    public TicketEntity savePickupDate(TicketEntity ticket){
+        if (ticket == null) {
+            System.out.println("Ticket is null");
+            return null;
+        }
+
+        // Fetch the repairs associated with the ticket
+        List<RepairEntity> repairs = repairRepository.findRepairsByIdTicket(ticket.getIdTicket());
+
+        // Iterate over the repairs
+        for (RepairEntity repair : repairs) {
+            // Check if the repair has a pickupDate
+            if (repair.getPickupDate() != null) {
+                // Save the pickupDate in the ticket
+                ticket.setPickupDate(repair.getPickupDate());
+                // Save and return the updated ticket
+                return ticketRepository.save(ticket);
+            }
+        }
+
+        // If no repair has a pickupDate, return null
+        return null;
     }
 }

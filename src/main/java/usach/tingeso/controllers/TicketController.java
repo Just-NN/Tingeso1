@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/ticket")
+@CrossOrigin(origins = "*")
 public class TicketController {
 
     @Autowired
@@ -125,6 +126,24 @@ public class TicketController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(ticketService.saveTotalPrice(ticket));
+    }
+    //------------------------------------------------------------------------------------------------------------
+    // Initialization for the ticket
+    @PutMapping("/init")
+    public ResponseEntity<TicketEntity> saveInit(@RequestBody TicketEntity ticket){
+        if (ticket == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        ticketService.savePickupDate(ticket);
+        ticketService.saveBasePrice(ticket);
+        ticketService.saveKMSurcharge(ticket);
+        ticketService.saveAgeSurcharge(ticket);
+        ticketService.saveSurchargeForDelay(ticket);
+        ticketService.saveDiscountByRepairs(ticket);
+        ticketService.saveDiscountByDay(ticket);
+        ticketService.saveBrandBonus(ticket);
+        ticketService.saveTotalPrice(ticket);
+        return ResponseEntity.ok(ticket);
     }
 
 

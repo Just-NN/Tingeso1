@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import usach.tingeso.entities.BonusBrandEntity;
 import usach.tingeso.entities.RepairEntity;
@@ -14,10 +15,7 @@ import usach.tingeso.repositories.RepairRepository;
 import usach.tingeso.repositories.TicketRepository;
 import usach.tingeso.repositories.VehicleRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -408,5 +406,24 @@ public class TicketServiceTest {
         // Assert
         assertEquals(300, result.getTotalPrice());
     }
+
+    // pickup test
+    @Test
+    public void testSavePickupDate() {
+        TicketEntity ticket = new TicketEntity();
+        ticket.setIdTicket(1L);
+
+        RepairEntity repair = new RepairEntity();
+        repair.setPickupDate(Calendar.getInstance()); // Corrected this line
+        List<RepairEntity> repairs = Arrays.asList(repair);
+
+        when(repairRepository.findRepairsByIdTicket(ticket.getIdTicket())).thenReturn(repairs);
+        when(ticketRepository.save(Mockito.any(TicketEntity.class))).thenAnswer(i -> i.getArguments()[0]);
+
+        TicketEntity response = ticketService.savePickupDate(ticket);
+        assertEquals(repair.getPickupDate(), response.getPickupDate());
+    }
+
+
 
 }
