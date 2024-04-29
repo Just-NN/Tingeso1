@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 @Entity
@@ -31,11 +32,11 @@ public class RepairEntity {
     private Long licensePlate;
 
     private int repairType;
-    private Calendar entryDate;
-    private Calendar exitDate;
+    private Date entryDate;
+    private Date exitDate;
     private LocalTime exitTime;
 
-    private Calendar pickupDate;
+    private Date pickupDate;
 
     private LocalTime pickupTime;
     private Long totalRepairAmount;
@@ -64,8 +65,9 @@ public class RepairEntity {
             // Handle null entryDate or exitDate as per your application's requirements
             return;
         }
-        long diffInMillies = Math.abs(this.exitDate.getTimeInMillis() - this.entryDate.getTimeInMillis());
-        this.totalRepairAmount = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        long diffInMillies = Math.abs(this.exitDate.getTime() - this.entryDate.getTime());
+        long diffInDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        this.totalRepairAmount = diffInDays;
     }
 
 }

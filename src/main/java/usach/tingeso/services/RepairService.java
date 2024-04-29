@@ -9,7 +9,10 @@ import usach.tingeso.repositories.RepairRepository;
 import usach.tingeso.repositories.TicketRepository;
 import usach.tingeso.repositories.VehicleRepository;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,7 +50,8 @@ public class RepairService {
             return null;
         }
 
-        Long idTicket = getIdTicketFromRepairsByEntryDate(repair.getEntryDate());
+        Date entryDate = repair.getEntryDate();
+        Long idTicket = getIdTicketFromRepairsByEntryDate(entryDate);
         System.out.println("ID TICKET: " + idTicket);
         TicketEntity ticket = ticketRepository.findTicketByIdTicket(idTicket);
         System.out.println("TIKET: " + ticket);
@@ -89,15 +93,14 @@ public class RepairService {
 
     // Repairs of a vehicle this year
     public List<RepairEntity> getRepairsByVehicleThisYear(Long licensePlate){
-        Calendar currentYear = Calendar.getInstance();
+        Date currentYear = new Date();
         return repairRepository.findByVehicleThisYear(licensePlate, currentYear);
     }
 
     // Repairs of a vehicle in a specific date
-    public List<RepairEntity> getRepairsByVehicleAndEntryDate(Long licensePlate, Calendar date){
+    public List<RepairEntity> getRepairsByVehicleAndEntryDate(Long licensePlate, Date date){
         return repairRepository.findRepairsByVehicleAndEntryDate(licensePlate, date);
     }
-
     //------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------
     // All the values for R2
@@ -145,7 +148,8 @@ public class RepairService {
     }
 
     // Get idTicket from repair by date
-    public Long getIdTicketFromRepairsByEntryDate(Calendar entryDate){
+
+    public Long getIdTicketFromRepairsByEntryDate(Date entryDate){
         List<RepairEntity> repairs = repairRepository.findRepairsByEntryDate(entryDate);
         for (RepairEntity repair : repairs) {
             if (repair != null && repair.getIdTicket() != null) {
@@ -154,11 +158,11 @@ public class RepairService {
         }
         return null;
     }
-    // Get repairs in the last year
+
     public List<RepairEntity> getRepairsInLastYear(RepairEntity repair){
         Long licensePlate = repair.getLicensePlate();
-        Calendar lastYear = Calendar.getInstance();
-        lastYear.add(Calendar.YEAR, -1);
+        Date lastYear = new Date();
+        lastYear.setYear(lastYear.getYear() - 1);
         return repairRepository.findByVehicleThisYear(licensePlate, lastYear);
     }
 

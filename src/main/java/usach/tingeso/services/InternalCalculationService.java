@@ -13,6 +13,7 @@ import usach.tingeso.repositories.VehicleRepository;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.List;
@@ -218,18 +219,18 @@ public class InternalCalculationService {
     }
 
     // Calculate the discount by the day of the week
+
     public double calculateDiscountByDay(RepairEntity repair){
         if (repair == null) {
             return -1;
         }
-        Calendar entryDate = Calendar.getInstance();
-        entryDate.setTime(repair.getEntryDate().getTime()); // Get the Date object from the Calendar
-        int entryDay = entryDate.get(Calendar.DAY_OF_WEEK);
+        ZonedDateTime entryDateTime = repair.getEntryDate().toInstant().atZone(ZoneId.systemDefault());
+        int entryDay = entryDateTime.getDayOfWeek().getValue();
         System.out.println("Day: " + entryDay);
-        int entryHour = entryDate.get(Calendar.HOUR_OF_DAY);
+        int entryHour = entryDateTime.getHour();
         System.out.println("Hour: " + entryHour);
         double dayDiscount = 0;
-        if (entryDay >= Calendar.MONDAY && entryDay <= Calendar.THURSDAY){
+        if (entryDay >= 1 && entryDay <= 4){ // 1 = Monday, 4 = Thursday in java.time API
             System.out.println("Es buen dia");
             if (entryHour >= 9 && entryHour <= 12){
                 System.out.println("Es buen horario");

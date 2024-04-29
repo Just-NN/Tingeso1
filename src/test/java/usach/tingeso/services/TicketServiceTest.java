@@ -414,7 +414,7 @@ public class TicketServiceTest {
         ticket.setIdTicket(1L);
 
         RepairEntity repair = new RepairEntity();
-        repair.setPickupDate(Calendar.getInstance()); // Corrected this line
+        repair.setPickupDate(new Date()); // Use java.util.Date instead of Calendar
         List<RepairEntity> repairs = Arrays.asList(repair);
 
         when(repairRepository.findRepairsByIdTicket(ticket.getIdTicket())).thenReturn(repairs);

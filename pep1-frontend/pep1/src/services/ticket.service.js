@@ -53,6 +53,13 @@ function saveBrandBonus(ticket) {
 function saveTotalPrice(ticket) {
     return axios.put(`${API_URL}/totalPrice`, ticket);
 }
+function initTicket(ticket) {
+    return axios.put(`${API_URL}/init`, ticket, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
 
 export default {
     getTicketById,
@@ -67,5 +74,6 @@ export default {
     saveDiscountByRepairs,
     saveDiscountByDay,
     saveBrandBonus,
-    saveTotalPrice
+    saveTotalPrice,
+    initTicket
 }

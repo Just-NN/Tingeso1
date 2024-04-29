@@ -278,6 +278,8 @@ public class TicketControllerTest {
     @Test
     public void testSaveInit() {
         TicketEntity ticket = new TicketEntity();
+        ticket.setIdTicket(1L); // Set the ID of the ticket
+
         when(ticketService.savePickupDate(ticket)).thenReturn(ticket);
         when(ticketService.saveBasePrice(ticket)).thenReturn(ticket);
         when(ticketService.saveKMSurcharge(ticket)).thenReturn(ticket);

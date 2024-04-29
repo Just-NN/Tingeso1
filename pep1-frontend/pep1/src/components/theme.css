@@ -49,6 +49,7 @@ a:hover {
 .repair-table {
     width: 100%;
     border-collapse: collapse;
+    overflow: auto;
 }
 
 .repair-table th, .repair-table td {

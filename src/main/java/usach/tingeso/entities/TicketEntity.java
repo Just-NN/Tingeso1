@@ -21,7 +21,7 @@ public class TicketEntity {
     private Long idTicket;
 
     // Using this value i can verify that the repairs are related to this ticket
-    Calendar pickupDate;
+    Date pickupDate;
 
     private Long idBonus;
 

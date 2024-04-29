@@ -12,6 +12,7 @@ import usach.tingeso.repositories.RepairRepository;
 import usach.tingeso.repositories.TicketRepository;
 import usach.tingeso.repositories.VehicleRepository;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -114,33 +115,36 @@ public class RepairServiceTest {
     }
 
 
-    @Test
-    public void getRepairsByVehicleThisYearTest() {
-        Long licensePlate = 123L;
-        List<RepairEntity> repairs = Arrays.asList(new RepairEntity(), new RepairEntity());
-        when(repairRepository.findByVehicleThisYear(eq(licensePlate), any(Calendar.class))).thenReturn(repairs);
+    public List<RepairEntity> getRepairsByVehicleThisYear(Long licensePlate) {
+        // Create a Calendar object representing the start of the current year
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date startOfYear = calendar.getTime();
 
-        List<RepairEntity> result = repairService.getRepairsByVehicleThisYear(licensePlate);
-
-        verify(repairRepository).findByVehicleThisYear(eq(licensePlate), any(Calendar.class));
-        assertEquals(repairs, result);
+        return repairRepository.findByVehicleThisYear(licensePlate, startOfYear);
     }
+
     @Test
     public void getRepairsByVehicleThisYearNullTest() {
         Long licensePlate = 123L;
         List<RepairEntity> repairs = null;
-        when(repairRepository.findByVehicleThisYear(eq(licensePlate), any(Calendar.class))).thenReturn(repairs);
+        when(repairRepository.findByVehicleThisYear(eq(licensePlate), any(Date.class))).thenReturn(repairs);
 
         List<RepairEntity> result = repairService.getRepairsByVehicleThisYear(licensePlate);
 
-        verify(repairRepository).findByVehicleThisYear(eq(licensePlate), any(Calendar.class));
-        assertEquals(null, result);
+        verify(repairRepository).findByVehicleThisYear(eq(licensePlate), any(Date.class));
+        assertNull(result);
     }
 
     @Test
     public void getRepairsByVehicleAndEntryDateTest() {
         Long licensePlate = 123L;
-        Calendar date = Calendar.getInstance();
+        Date date = new Date();
         List<RepairEntity> repairs = Arrays.asList(new RepairEntity(), new RepairEntity());
         when(repairRepository.findRepairsByVehicleAndEntryDate(licensePlate, date)).thenReturn(repairs);
 
@@ -153,7 +157,7 @@ public class RepairServiceTest {
     @Test
     public void getRepairsByVehicleAndEntryDateNullTest() {
         Long licensePlate = 123L;
-        Calendar date = Calendar.getInstance();
+        Date date = new Date();
         List<RepairEntity> repairs = null;
         when(repairRepository.findRepairsByVehicleAndEntryDate(licensePlate, date)).thenReturn(repairs);
 
@@ -233,7 +237,7 @@ public class RepairServiceTest {
     }
     @Test
     public void getIdTicketFromRepairsByEntryDateTest() {
-        Calendar entryDate = Calendar.getInstance();
+        Date entryDate = new Date();
         List<RepairEntity> repairs = Arrays.asList(new RepairEntity(), new RepairEntity());
         when(repairRepository.findRepairsByEntryDate(entryDate)).thenReturn(repairs);
 
@@ -241,11 +245,12 @@ public class RepairServiceTest {
 
         verify(repairRepository).findRepairsByEntryDate(entryDate);
         // Add assertions to check the result
+        assertEquals(null, result);
     }
 
     @Test
     public void getIdTicketFromRepairsByEntryDateNullTest() {
-        Calendar entryDate = Calendar.getInstance();
+        Date entryDate = new Date();
         List<RepairEntity> repairs = Collections.emptyList();
         when(repairRepository.findRepairsByEntryDate(entryDate)).thenReturn(repairs);
 
@@ -255,28 +260,34 @@ public class RepairServiceTest {
         // Add assertions to check the result
         assertNull(result);
     }
+
     @Test
     public void getRepairsInLastYearTest() {
         RepairEntity repair = new RepairEntity();
         repair.setLicensePlate(123L);
+        Date lastYear = new Date();
+        lastYear.setYear(lastYear.getYear() - 1);
         List<RepairEntity> repairs = Arrays.asList(new RepairEntity(), new RepairEntity());
-        when(repairRepository.findByVehicleThisYear(eq(repair.getLicensePlate()), any(Calendar.class))).thenReturn(repairs);
+        when(repairRepository.findByVehicleThisYear(eq(repair.getLicensePlate()), eq(lastYear))).thenReturn(repairs);
 
         List<RepairEntity> result = repairService.getRepairsInLastYear(repair);
 
-        verify(repairRepository).findByVehicleThisYear(eq(repair.getLicensePlate()), any(Calendar.class));
+        verify(repairRepository).findByVehicleThisYear(eq(repair.getLicensePlate()), eq(lastYear));
         assertEquals(repairs, result);
     }
+
     @Test
     public void getRepairsInLastYearNullTest() {
         RepairEntity repair = new RepairEntity();
         repair.setLicensePlate(123L);
+        Date lastYear = new Date();
+        lastYear.setYear(lastYear.getYear() - 1);
         List<RepairEntity> repairs = null;
-        when(repairRepository.findByVehicleThisYear(eq(repair.getLicensePlate()), any(Calendar.class))).thenReturn(repairs);
+        when(repairRepository.findByVehicleThisYear(eq(repair.getLicensePlate()), eq(lastYear))).thenReturn(repairs);
 
         List<RepairEntity> result = repairService.getRepairsInLastYear(repair);
 
-        verify(repairRepository).findByVehicleThisYear(eq(repair.getLicensePlate()), any(Calendar.class));
+        verify(repairRepository).findByVehicleThisYear(eq(repair.getLicensePlate()), eq(lastYear));
         assertEquals(null, result);
     }
 

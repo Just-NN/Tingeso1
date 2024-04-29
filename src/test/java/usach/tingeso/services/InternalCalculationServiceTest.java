@@ -19,6 +19,7 @@ import usach.tingeso.services.InternalCalculationService;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 
 @ExtendWith(MockitoExtension.class)
 public class InternalCalculationServiceTest {
@@ -220,12 +221,12 @@ public class InternalCalculationServiceTest {
         repair.setLicensePlate(123L);
 
         // Set entry date to 7 days ago
-        Calendar entryDate = Calendar.getInstance();
-        entryDate.add(Calendar.DATE, -7);
+        Date entryDate = new Date();
+        entryDate.setTime(entryDate.getTime() - 7 * 24 * 60 * 60 * 1000); // Subtract 7 days in milliseconds
         repair.setEntryDate(entryDate);
 
         // Set pickup date to current date
-        Calendar pickupDate = Calendar.getInstance();
+        Date pickupDate = new Date();
         repair.setPickupDate(pickupDate);
 
         when(repairRepository.save(any(RepairEntity.class))).thenAnswer(i -> i.getArguments()[0]);
@@ -346,9 +347,16 @@ public class InternalCalculationServiceTest {
         repair.setLicensePlate(123L);
 
         // Set entry date to a Thursday at 10 AM
-        Calendar entryDate = Calendar.getInstance();
-        entryDate.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-        entryDate.set(Calendar.HOUR_OF_DAY, 10);
+        Date entryDate = new Date();
+        // Ensure it's Thursday at 10 AM
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(entryDate);
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+        cal.set(Calendar.HOUR_OF_DAY, 10);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        entryDate = cal.getTime();
         repair.setEntryDate(entryDate);
 
         when(repairRepository.save(any(RepairEntity.class))).thenAnswer(i -> i.getArguments()[0]);

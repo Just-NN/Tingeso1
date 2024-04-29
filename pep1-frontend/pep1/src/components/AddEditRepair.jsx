@@ -10,10 +10,10 @@ const AddEditRepair = () => {
     const [idTicket, setIdTicket] = useState(null);
     const [licensePlate, setLicensePlate] = useState(null);
     const [repairType, setRepairType] = useState(null);
-    const [entryDateTime, setEntryDateTime] = useState(null);
-    const [exitDateTime, setExitDateTime] = useState(null);
+    const [entryDateTime, setEntryDateTime] = useState(new Date());
+    const [exitDateTime, setExitDateTime] = useState(new Date());
     const [exitTime, setExitTime] = useState(null);
-    const [pickupDateTime, setPickupDateTime] = useState(null);
+    const [pickupDateTime, setPickupDateTime] = useState(new Date());
     const [pickupTime, setPickupTime] = useState(null);
     const [totalRepairAmount, setTotalRepairAmount] = useState(null);
     const [kmSurcharge, setKmSurcharge] = useState(null);
@@ -35,10 +35,10 @@ const AddEditRepair = () => {
                 setIdTicket(repair.idTicket);
                 setLicensePlate(repair.licensePlate);
                 setRepairType(repair.repairType);
-                setEntryDateTime(repair.entryDateTime);
-                setExitDateTime(repair.exitDateTime);
+                setEntryDateTime(repair.entryDateTime ? new Date(repair.entryDateTime) : new Date());
+                setExitDateTime(repair.exitDateTime ? new Date(repair.exitDateTime) : new Date());
                 setExitTime(repair.exitTime);
-                setPickupDateTime(repair.pickupDateTime);
+                setPickupDateTime(repair.pickupDateTime ? new Date(repair.pickupDateTime) : new Date());
                 setPickupTime(repair.pickupTime);
                 setTotalRepairAmount(repair.totalRepairAmount);
                 setKmSurcharge(repair.kmSurcharge);
@@ -55,15 +55,13 @@ const AddEditRepair = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const repair = {
-            idRepair,
-            idTicket,
+        let repair = {
             licensePlate,
             repairType,
-            entryDateTime: entryDateTime ? format(new Date(entryDateTime), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx") : null,
-            exitDateTime: exitDateTime ? format(new Date(exitDateTime), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx") : null,
+            entryDateTime: entryDateTime instanceof Date && !isNaN(entryDateTime) ? format(entryDateTime, "yyyy-MM-dd'T'HH:mm") : null,
+            exitDateTime: exitDateTime instanceof Date && !isNaN(exitDateTime) ? format(exitDateTime, "yyyy-MM-dd'T'HH:mm") : null,
             exitTime,
-            pickupDateTime: pickupDateTime ? format(new Date(pickupDateTime), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx") : null,
+            pickupDateTime: pickupDateTime instanceof Date && !isNaN(pickupDateTime) ? format(pickupDateTime, "yyyy-MM-dd'T'HH:mm") : null,
             pickupTime,
             totalRepairAmount,
             kmSurcharge,
@@ -74,13 +72,15 @@ const AddEditRepair = () => {
             basePrice,
             totalPrice
         };
-        console.log(repair.entryDateTime)
 
         if (idRepair) {
+            repair.idRepair = idRepair;
+            repair.idTicket = idTicket;
             repairService.updateRepair(repair).then(() => {
                 navigate('/repairs');
             });
         } else {
+            console.log('reparacion a crear' + repair)
             repairService.saveRepair(repair).then(() => {
                 navigate('/repairs');
             });
@@ -100,11 +100,11 @@ const AddEditRepair = () => {
             </FormGroup>
             <FormGroup>
                 <Label for="entryDateTime">Entry Date and Time</Label>
-                <Input type="datetime-local" id="entryDateTime" value={entryDateTime || ''} onChange={(e) => setEntryDateTime(e.target.value)} />
+                <Input type="datetime-local" id="entryDateTime" value={format(entryDateTime, "yyyy-MM-dd'T'HH:mm")} onChange={(e) => setEntryDateTime(new Date(e.target.value))} />
             </FormGroup>
             <FormGroup>
                 <Label for="exitDateTime">Exit Date and Time</Label>
-                <Input type="datetime-local" id="exitDateTime" value={exitDateTime || ''} onChange={(e) => setExitDateTime(e.target.value)} />
+                <Input type="datetime-local" id="exitDateTime" value={format(exitDateTime, "yyyy-MM-dd'T'HH:mm")} onChange={(e) => setExitDateTime(new Date(e.target.value))} />
             </FormGroup>
             <FormGroup>
                 <Label for="exitTime">Exit Time</Label>
@@ -112,7 +112,7 @@ const AddEditRepair = () => {
             </FormGroup>
             <FormGroup>
                 <Label for="pickupDateTime">Pickup Date and Time</Label>
-                <Input type="datetime-local" id="pickupDateTime" value={pickupDateTime || ''} onChange={(e) => setPickupDateTime(e.target.value)} />
+                <Input type="datetime-local" id="pickupDateTime" value={format(pickupDateTime, "yyyy-MM-dd'T'HH:mm")} onChange={(e) => setPickupDateTime(new Date(e.target.value))} />
             </FormGroup>
             <FormGroup>
                 <Label for="pickupTime">Pickup Time</Label>

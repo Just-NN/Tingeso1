@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import repairService from '../services/repair.service';
 import NavBar from "./NavBar.jsx";
 import './theme.css';
+import { format } from 'date-fns';
 
 const RepairList = () => {
     const [repairs, setRepairs] = useState([]);
@@ -9,7 +10,13 @@ const RepairList = () => {
     const fetchRepairs = () => {
         repairService.getAllRepairs()
             .then(response => {
-                setRepairs(response.data);
+                const data = response.data.map(repair => ({
+                    ...repair,
+                    entryDate: new Date(repair.entryDate),
+                    exitDate: new Date(repair.exitDate),
+                    pickupDate: new Date(repair.pickupDate)
+                }));
+                setRepairs(data);
             })
             .catch(error => {
                 console.error('There was an error!', error);
@@ -54,10 +61,10 @@ const RepairList = () => {
                         <td>{repair.idTicket}</td>
                         <td>{repair.licensePlate}</td>
                         <td>{repair.repairType}</td>
-                        <td>{repair.entryDate}</td>
-                        <td>{repair.exitDate}</td>
+                        <td>{format(repair.entryDate, "yyyy-MM-dd'T'HH:mm")}</td>
+                        <td>{format(repair.exitDate, "yyyy-MM-dd'T'HH:mm")}</td>
                         <td>{repair.exitTime}</td>
-                        <td>{repair.pickupDate}</td>
+                        <td>{format(repair.pickupDate, "yyyy-MM-dd'T'HH:mm")}</td>
                         <td>{repair.pickupTime}</td>
                         <td>{repair.totalRepairAmount}</td>
                         <td>{repair.kmSurcharge}</td>

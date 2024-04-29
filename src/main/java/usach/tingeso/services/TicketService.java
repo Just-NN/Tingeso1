@@ -278,6 +278,10 @@ public class TicketService {
         }
         System.out.println("VAMOS A PROBAR");
         RepairEntity repair = repairRepository.findFirstByIdTicket(ticket.getIdTicket());
+        if (repair == null) {
+            System.out.println("No repair found for ticket ID: " + ticket.getIdTicket());
+            return null;
+        }
         System.out.println("Repair: " + repair.toString());
         VehicleEntity vehicle = vehicleRepository.findVehicleByLicensePlate(repair.getLicensePlate());
         if (vehicle == null) {
@@ -334,6 +338,7 @@ public class TicketService {
     //------------------------------------------------------------------------------------------------------------
     // Setup pickup date
     public TicketEntity savePickupDate(TicketEntity ticket){
+        System.out.println("funca la cosa de repairs");
         if (ticket == null) {
             System.out.println("Ticket is null");
             return null;

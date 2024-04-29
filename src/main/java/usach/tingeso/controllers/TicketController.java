@@ -2,6 +2,7 @@ package usach.tingeso.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import usach.tingeso.entities.RepairEntity;
@@ -129,11 +130,12 @@ public class TicketController {
     }
     //------------------------------------------------------------------------------------------------------------
     // Initialization for the ticket
-    @PutMapping("/init")
+    @PutMapping(value = "/init", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TicketEntity> saveInit(@RequestBody TicketEntity ticket){
         if (ticket == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        System.out.println("Init ticket");
         ticketService.savePickupDate(ticket);
         ticketService.saveBasePrice(ticket);
         ticketService.saveKMSurcharge(ticket);
