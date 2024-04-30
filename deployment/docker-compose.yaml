@@ -13,6 +13,8 @@ services:
       - gestion-estudiantes-backend-network
     depends_on:
       - spring1
+      - spring2
+      - spring3
   nginx-frontend:
     image: nginx
     container_name: gestion-estudiantes-nginx-frontend-container
@@ -27,17 +29,22 @@ services:
       - react1
       - react2
       - react3
-  mysql:
-    container_name: gestion-estudiantes-mysql-container
-    image: mysql:latest  # Change version if needed
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root  # Set a strong password
-      MYSQL_DATABASE: default  # Database name
-    ports:
-      - 3666:3666
+  postgres:
+    container_name: gestion-estudiantes-postgres-container
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    deploy:
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - gestion-estudiantes-postgres-volume:/var/lib/mysql
     networks:
       - gestion-estudiantes-backend-network
+    environment:
+      MYSQL_DATABASE: tingeso1
+      MYSQL_ROOT_PASSWORD: default
+    ports:
+      - 33061:3306
   spring1:
     container_name: gestion-estudiantes-backend-container-1
     image: ivanguajardo13/pep1
@@ -45,19 +52,51 @@ services:
       - 8091:8090
     environment:
       DB_HOST: tingeso1
-      DB_PORT: 3666
-      DB_USERNAME: root  # Update if your backend uses a different user
-      DB_PASSWORD: default  # Update password accordingly
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: default
     networks:
       - gestion-estudiantes-backend-network
     deploy:
       restart_policy:
         condition: on-failure
     depends_on:
-      - mysql
+      - postgres
+  spring2:
+    container_name: gestion-estudiantes-backend-container-2
+    image: ivanguajardo13/pep1
+    ports:
+      - 8092:8090
+    environment:
+      DB_HOST: tingeso1
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: default
+    networks:
+      - gestion-estudiantes-backend-network
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - postgres
+  spring3:
+    container_name: gestion-estudiantes-backend-container-3
+    image: ivanguajardo13/pep1
+    ports:
+      - 8093:8090
+    environment:
+      DB_HOST: tingeso1
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: default
+    networks:
+      - gestion-estudiantes-backend-network
+    deploy:
+      restart_policy:
+        condition: on-failure
   react1:
     container_name: gestion-estudiantes-frontend-container-1
-    image: ivanguajardo13/pep1frontend
+    image: ivanguajardo13/pep1front
     ports:
       - 3001:3000
     networks:
@@ -67,7 +106,7 @@ services:
         condition: on-failure
   react2:
     container_name: gestion-estudiantes-frontend-container-2
-    image: ivanguajardo13/pep1frontend
+    image: ivanguajardo13/pep1front
     ports:
       - 3002:3000
     networks:
@@ -77,12 +116,16 @@ services:
         condition: on-failure
   react3:
     container_name: gestion-estudiantes-frontend-container-3
-    image: ivanguajardo13/pep1frontend
+    image: ivanguajardo13/pep1front
+    networks:
+      - gestion-estudiantes-frontend-network
     ports:
       - 3003:3000
     deploy:
       restart_policy:
         condition: on-failure
+volumes:
+  gestion-estudiantes-postgres-volume:
 networks:
   gestion-estudiantes-frontend-network:
   gestion-estudiantes-backend-network:
