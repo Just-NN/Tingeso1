@@ -13,8 +13,6 @@ services:
       - gestion-estudiantes-backend-network
     depends_on:
       - spring1
-      - spring2
-      - spring3
   nginx-frontend:
     image: nginx
     container_name: gestion-estudiantes-nginx-frontend-container
@@ -37,7 +35,7 @@ services:
       MYSQL_ROOT_PASSWORD: root  # Set a strong password
       MYSQL_DATABASE: default  # Database name
     ports:
-      - 3306:3306
+      - 3666:3666
     networks:
       - gestion-estudiantes-backend-network
   spring1:
@@ -47,43 +45,9 @@ services:
       - 8091:8090
     environment:
       DB_HOST: tingeso1
-      DB_PORT: 3306
+      DB_PORT: 3666
       DB_USERNAME: root  # Update if your backend uses a different user
       DB_PASSWORD: default  # Update password accordingly
-    networks:
-      - gestion-estudiantes-backend-network
-    deploy:
-      restart_policy:
-        condition: on-failure
-    depends_on:
-      - mysql
-  spring2:
-    container_name: gestion-estudiantes-backend-container-2
-    image: ivanguajardo13/pep1
-    ports:
-      - 8092:8090
-    environment:
-      DB_HOST: tingeso1
-      DB_PORT: 3306
-      DB_USERNAME: root  # Update if your backend uses a different user
-      DB_PASSWORD: default  # Update password accordingly
-    networks:
-      - gestion-estudiantes-backend-network
-    deploy:
-      restart_policy:
-        condition: on-failure
-    depends_on:
-      - mysql
-  spring3:
-    container_name: gestion-estudiantes-backend-container-3
-    image: ivanguajardo13/pep1
-    ports:
-      - 8093:8090
-    environment:
-      DB_HOST: tingeso1
-      DB_PORT: 3306
-      DB_USERNAME: root  # Update if your backend uses a different user
-      DB_PASSWORD: root_password  # Update password accordingly
     networks:
       - gestion-estudiantes-backend-network
     deploy:
@@ -119,8 +83,6 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-volumes:
-  gestion-estudiantes-postgres-volume:
 networks:
   gestion-estudiantes-frontend-network:
   gestion-estudiantes-backend-network:

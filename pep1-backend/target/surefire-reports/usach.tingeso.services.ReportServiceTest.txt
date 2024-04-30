@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: usach.tingeso.services.ReportServiceTest
 -------------------------------------------------------------------------------
-Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in usach.tingeso.services.ReportServiceTest
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.072 s -- in usach.tingeso.services.ReportServiceTest
