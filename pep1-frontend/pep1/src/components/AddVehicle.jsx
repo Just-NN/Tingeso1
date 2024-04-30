@@ -86,7 +86,7 @@ const AddVehicle = () => {
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="mileage">Mileage</Label>
+                <Label for="mileage">KM</Label>
                 <Input type="number" id="mileage" value={mileage || ''} onChange={(e) => setMileage(e.target.value)} />
             </FormGroup>
             <FormGroup>

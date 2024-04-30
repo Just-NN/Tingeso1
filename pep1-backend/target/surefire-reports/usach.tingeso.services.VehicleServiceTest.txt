@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: usach.tingeso.services.VehicleServiceTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in usach.tingeso.services.VehicleServiceTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in usach.tingeso.services.VehicleServiceTest

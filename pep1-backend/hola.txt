@@ -7,14 +7,41 @@ pipeline {
         stage("Build JAR file") {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Just-NN/Tingeso1']])
-                sh "mvn clean install"
+                dir("pep1-backend") {
+                    sh "mvn clean package"
+                }
             }
         }
-
-    }
-    post {
-        always {
-            sh "docker logout"
-        }
-    }
-}
+        stage("Testing"){
+                    steps{
+                         dir("pep1-backend"){
+                             sh "mvn test"
+                         }
+                    }
+                }
+         stage("Build docker image"){
+                    steps{
+                        dir("pep1-backend"){
+                            sh "docker build -t ivanguajardo13/pep1 ."
+                        }
+                    }
+                }
+                stage("Push docker image"){
+                            steps{
+                                dir("pep1-backend"){
+                                    withCredentials([string(credentialsId: 'dckerhubpassword', variable: 'dckerpass')]) {
+                                        sh "docker login -u ivanguajardo13 -p ${dckerpass}"
+                                    }
+                                    sh "docker push ivanguajardo13/pep1"
+                                }
+                            }
+                        }
+                    }
+                    post{
+                        always{
+                            dir("pep1-backend"){
+                                sh "docker logout"
+                            }
+                        }
+                    }
+                }
