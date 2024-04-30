@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>usach</groupId>
 	<artifactId>tingeso</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>BETA</version>
 	<name>tingeso</name>
 	<description>Proyecto de tingeso</description>
 	<properties>

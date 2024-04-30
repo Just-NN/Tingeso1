@@ -1,0 +1,14 @@
+usach\tingeso\controllers\BonusBrandControllerTest.class
+usach\tingeso\services\ReportServiceTest.class
+usach\tingeso\services\TicketServiceTest.class
+usach\tingeso\services\RepairServiceTest.class
+usach\tingeso\repositories\BonusBrandRepositoryTest.class
+usach\tingeso\TingesoApplicationTests.class
+usach\tingeso\repositories\RepairRepositoryTest.class
+usach\tingeso\services\BonusBrandServiceTest.class
+usach\tingeso\controllers\RepairControllerTest.class
+usach\tingeso\controllers\TicketControllerTest.class
+usach\tingeso\services\InternalCalculationServiceTest.class
+usach\tingeso\services\VehicleServiceTest.class
+usach\tingeso\controllers\ReportControllerTest.class
+usach\tingeso\controllers\VehicleControllerTest.class

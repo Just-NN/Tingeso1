@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import usach.tingeso.entities.BonusBrandEntity;
 import usach.tingeso.services.BonusBrandService;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Collections;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 public class BonusBrandControllerTest {
 
@@ -107,5 +109,25 @@ public class BonusBrandControllerTest {
         assertEquals(expectedBonus, response.getBody());
     }
 
-    // Similarly, you can write tests for other methods like saveBonusBrand, deleteBonusBrand, updateBonusBrand, getBonusByBrand
+    //------------------------------------------------------------------------------------------------
+    // GET ALL
+    @Test
+    public void testGetAllBonusBrands() {
+        BonusBrandEntity bonusBrand = new BonusBrandEntity();
+        when(bonusBrandService.getAllBonusBrands()).thenReturn(Collections.singletonList(bonusBrand));
+
+        ResponseEntity<Iterable<BonusBrandEntity>> response = bonusBrandController.getAllBonusBrands();
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertTrue(response.getBody().iterator().hasNext());
+        assertEquals(bonusBrand, response.getBody().iterator().next());
+    }
+
+    @Test
+    public void testGetAllBonusBrandsEmpty() {
+        when(bonusBrandService.getAllBonusBrands()).thenReturn(null);
+
+        ResponseEntity<Iterable<BonusBrandEntity>> response = bonusBrandController.getAllBonusBrands();
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
 }

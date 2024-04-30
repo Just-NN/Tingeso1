@@ -8,11 +8,13 @@ import BonusBrands from "./components/BonusBrandsHome.jsx";
 import Reports from "./components/ReportsHome.jsx";
 import Tickets from "./components/TicketsHome.jsx";
 import RepairList from "./components/RepairList.jsx";
-import AddEditRepair from "./components/AddEditRepair.jsx";
+import AddEditRepair from "./components/AddEditRepair2.jsx";
 import RepairDetail from "./components/FindRepairById.jsx";
 import AddVehicle from "./components/AddVehicle.jsx";
 import ReportList from "./components/ReportList.jsx";
 import TicketList from "./components/TicketList.jsx";
+import AddBrand from "./components/AddBrand.jsx";
+import BonusBrandList from "./components/BonusList.jsx";
 
 function App() {
     return (
@@ -31,6 +33,8 @@ function App() {
                 <Route path="/vehicles/add" element={<AddVehicle />} />
                 <Route path="/reports/1" element={<ReportList />} />
                 <Route path="/tickets/list" element={<TicketList />} />
+                <Route path="/brands/add" element={<AddBrand />} />
+                <Route path="/brands/list" element={<BonusBrandList />} />
 
             </Routes>
         </BrowserRouter>

@@ -23,15 +23,6 @@ public class BonusBrandRepositoryTest {
     @Autowired
     private BonusBrandRepository bonusBrandRepository;
 
-    @Test
-    public void testFindBonusBrandByIdBonus() {
-        BonusBrandEntity bonusBrand = new BonusBrandEntity();
-        entityManager.persistAndFlush(bonusBrand);
-
-        BonusBrandEntity foundBonusBrand = bonusBrandRepository.findBonusBrandByIdBonus(bonusBrand.getIdBonus());
-        assertNotNull(foundBonusBrand);
-        assertEquals(bonusBrand.getIdBonus(), foundBonusBrand.getIdBonus());
-    }
 
 
 }

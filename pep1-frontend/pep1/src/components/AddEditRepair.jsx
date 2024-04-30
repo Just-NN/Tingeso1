@@ -80,7 +80,7 @@ const AddEditRepair = () => {
                 navigate('/repairs');
             });
         } else {
-            console.log('reparacion a crear' + repair)
+            console.log(repair)
             repairService.saveRepair(repair).then(() => {
                 navigate('/repairs');
             });

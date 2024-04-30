@@ -132,4 +132,6 @@ public class BonusBrandServiceTest {
 
         bonusBrandService.deleteBonusBrand(1L);
     }
+    //------------------------------------------------------------------------------------------------
+
 }

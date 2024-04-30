@@ -1,0 +1,71 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app01
+      - app02
+      - app03
+
+  db:
+    container_name: tingeso-db
+    image: postgres:latest
+    restart: always
+    volumes:
+      - ./data:/var/lib/mysql/top_education_data
+    environment:
+      - POSTGRES_DB=topEducation
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=default
+    ports:
+      - "5432:5432"
+
+  app01:
+    container_name: top-education01
+    image: opsord/top_education_apzd
+    ports:
+      - "8001:8090"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/TINGESO1?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=default
+    deploy:
+        restart_policy:
+            condition: on-failure
+    depends_on:
+      - db
+
+  app02:
+    container_name: top-education02
+    image: opsord/top_education_apzd
+    ports:
+      - "8002:8090"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/TINGESO1?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=default
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - db
+
+  app03:
+    container_name: top-education03
+    image: opsord/top_education_apzd
+    ports:
+      - "8003:8090"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/TINGESO1?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=default
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - db

@@ -21,9 +21,13 @@ function updateBonusBrand(bonusBrand) {
 function getBonusByBrand(brand) {
     return axios.get(`${API_URL}/bonus/${brand}`);
 }
+function getAllBonusBrands() {
+    return axios.get(`${API_URL}/`);
+}
 
 export default {
     getBonusBrandById,
+    getAllBonusBrands,
     saveBonusBrand,
     deleteBonusBrand,
     updateBonusBrand,

@@ -23,6 +23,14 @@ public class BonusBrandController {
         }
         return ResponseEntity.ok(bonusBrand);
     }
+    @GetMapping("/")
+    public ResponseEntity<Iterable<BonusBrandEntity>> getAllBonusBrands(){
+        Iterable<BonusBrandEntity> bonusBrands = bonusBrandService.getAllBonusBrands();
+        if (bonusBrands == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(bonusBrands);
+    }
 
     @PostMapping("/")
     public ResponseEntity<BonusBrandEntity> saveBonusBrand(@RequestBody BonusBrandEntity bonusBrand){

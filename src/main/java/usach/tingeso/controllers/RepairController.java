@@ -40,6 +40,7 @@ public class RepairController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         System.out.println("EJECUTANDO SAVEREPAIR");
+        System.out.println(repair.toString());
         return ResponseEntity.ok(repairService.saveRepair(repair));
     }
 

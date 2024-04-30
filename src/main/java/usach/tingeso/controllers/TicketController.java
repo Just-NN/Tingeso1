@@ -33,6 +33,8 @@ public class TicketController {
         if (ticket == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        System.out.println("Save ticket");
+        System.out.println(ticket.toString());
         return ResponseEntity.ok(ticketService.saveTicket(ticket));
     }
 

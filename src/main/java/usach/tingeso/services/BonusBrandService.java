@@ -18,6 +18,12 @@ public class BonusBrandService {
             return null;
         return bonusBrandRepository.findBonusBrandByIdBonus(id);
     }
+    public List<BonusBrandEntity> getAllBonusBrands(){
+        List<BonusBrandEntity> bonusBrands = bonusBrandRepository.findAll();
+        if (bonusBrands.isEmpty())
+            return null;
+        return bonusBrands;
+    }
     public BonusBrandEntity saveBonusBrand(BonusBrandEntity bonusBrand){
         if (bonusBrand == null)
             return null;

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: usach.tingeso.services.BonusBrandServiceTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.110 s -- in usach.tingeso.services.BonusBrandServiceTest
