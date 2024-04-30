@@ -19,3 +19,7 @@ k
 ;src/main/java/usach/tingeso/services/BonusBrandService.java,a\6\a67d9abce28c8981bc5c2ca97ff2987cc09d833a
 q
 Asrc/main/java/usach/tingeso/controllers/BonusBrandController.java,d\5\d5ede0d13c8e594a2f0f8e41088e911fcbeda38e
+8
+hola.txt,2\d\2d4c471742340458bdf9254e0ba58d6b78368669
+h
+8src/test/java/usach/tingeso/TingesoApplicationTests.java,a\b\ab376920bba0d6d44d78e01b17ec88b5fba217fd
