@@ -165,7 +165,7 @@ public class InternalCalculationService {
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         dfs.setDecimalSeparator('.');
         df.setDecimalFormatSymbols(dfs);
-        double delaySurcharge = Double.valueOf(df.format(-(delay)*0.05));
+        double delaySurcharge = Double.valueOf(df.format((delay)*0.05));
         System.out.println("Delay: " + delaySurcharge);
         // Save the surcharge in the RepairEntity
         repair.setDelaySurcharge(delaySurcharge);

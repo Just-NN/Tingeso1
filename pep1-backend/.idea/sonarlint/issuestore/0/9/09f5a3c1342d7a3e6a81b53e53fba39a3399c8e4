@@ -1,0 +1,35 @@
+
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$94eadb85-4dc4-47dd-b4d4-e60f6fc90776
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$7ec5f778-a67e-4396-ae9f-5f90491c5733
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$147e621f-62dd-46a7-8aa5-b442f1f1b1c3
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$0a753887-4274-47f9-99c5-839b1fcf35dc
+]
+java:S1116"Remove this empty statement.(‘«»¿úÿÿÿÿJ$cc2a8dd3-8acc-4fa0-a46d-43561b9b23f6
+
+java:S34576"Q%n should be used in place of \n to produce the platform-specific line separator.(ßİĞğJ$e26a42e4-3227-4c1c-a92b-e843d737607e
+f	java:S1066"+Replace this use of System.out by a logger.(ßİĞğJ$7b22758d-0c94-485e-aaf3-10aabd8431df
+k	java:S1067"+Replace this use of System.out by a logger.(·¡íüüÿÿÿÿJ$bd7044a5-e958-4e03-bd3d-6197fa7ef733
+
+java:S1854J">Remove this useless assignment to local variable "engineType".(¥§÷úÿÿÿÿJ$863689a0-380f-4886-8ecb-fb07b6c9c625
+p
+java:S1481J"/Remove this unused "engineType" local variable.(¥§÷úÿÿÿÿJ$289276ef-75b2-423b-81e4-31327e5edd45
+
+java:S1854w">Remove this useless assignment to local variable "engineType".(¥§÷úÿÿÿÿJ$ab22c575-babc-4ff2-b275-06de192ea838
+p
+java:S1481w"/Remove this unused "engineType" local variable.(¥§÷úÿÿÿÿJ$5105e8e2-301b-4375-84c9-9f2751ff4817
+€
+java:S2130¨">Use "Double.parseDouble" for this string-to-double conversion.(Â‘“œûÿÿÿÿJ$780be4e3-23a3-47ff-938b-fc8a77b38d96
+l	java:S106©"+Replace this use of System.out by a logger.(Ô”¥”ûÿÿÿÿJ$8ad884db-c5ba-4d5c-a668-2d799d3bee0e
+l	java:S106·"+Replace this use of System.out by a logger.(üİ²ÄùÿÿÿÿJ$8af26556-a91b-4118-ae69-82a5e8ab7e05
+g	java:S106º"+Replace this use of System.out by a logger.(ü³¤J$765dc373-a409-4252-ad0b-d19b0e899d80
+g	java:S106Ô"+Replace this use of System.out by a logger.(…Ü¹J$15d98db1-7083-400c-a1d6-1f3795e2d82a
+l	java:S106å"+Replace this use of System.out by a logger.(Ñ·şÿÿÿÿJ$c72f7597-78db-4fb1-99d5-73f6b437ccf7
+l	java:S106ç"+Replace this use of System.out by a logger.(ÚÅê©ıÿÿÿÿJ$f023a48c-a62b-4d8c-954c-61bcdc825392
+l	java:S106ê"+Replace this use of System.out by a logger.(Ï¤º€øÿÿÿÿJ$fee2746c-c93e-4465-b408-5334786a8730
+l	java:S106ì"+Replace this use of System.out by a logger.(ÆÚ¤ßşÿÿÿÿJ$2561fb42-4c57-472b-846b-182b6bfc34d9
+f
+java:S1128"*Remove this unused import 'lombok.Setter'.(ó¸çµJ$efe1210c-c62d-4f3a-b168-a9e261fd7813
