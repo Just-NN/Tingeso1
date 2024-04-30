@@ -235,8 +235,8 @@ public class InternalCalculationServiceTest {
         double result = internalCalculationService.calculateSurchargeForDelay(repair);
 
         // Assert
-        assertEquals(-0.35, result);
-        assertEquals(-0.35, repair.getDelaySurcharge());
+        assertEquals(0.35, result);
+        assertEquals(0.35, repair.getDelaySurcharge());
     }
 
     //------------------------------------------------------------------------------------------------

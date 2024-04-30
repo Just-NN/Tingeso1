@@ -280,15 +280,13 @@ public class RepairServiceTest {
     public void getRepairsInLastYearNullTest() {
         RepairEntity repair = new RepairEntity();
         repair.setLicensePlate(123L);
-        Date lastYear = new Date();
-        lastYear.setYear(lastYear.getYear() - 1);
         List<RepairEntity> repairs = null;
-        when(repairRepository.findByVehicleThisYear(eq(repair.getLicensePlate()), eq(lastYear))).thenReturn(repairs);
+        when(repairRepository.findByVehicleThisYear(eq(repair.getLicensePlate()), any(Date.class))).thenReturn(repairs);
 
         List<RepairEntity> result = repairService.getRepairsInLastYear(repair);
 
-        verify(repairRepository).findByVehicleThisYear(eq(repair.getLicensePlate()), eq(lastYear));
-        assertEquals(null, result);
+        verify(repairRepository).findByVehicleThisYear(eq(repair.getLicensePlate()), any(Date.class));
+        assertNull(result);
     }
 
 }

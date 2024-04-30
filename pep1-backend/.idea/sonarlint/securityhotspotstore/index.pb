@@ -23,3 +23,11 @@ Asrc/main/java/usach/tingeso/controllers/BonusBrandController.java,d\5\d5ede0d1
 hola.txt,2\d\2d4c471742340458bdf9254e0ba58d6b78368669
 h
 8src/test/java/usach/tingeso/TingesoApplicationTests.java,a\b\ab376920bba0d6d44d78e01b17ec88b5fba217fd
+C
+pruebas de post.txt,a\3\a3d53b2ee9a3d30d9e48b74bdec6b1ea881198a3
+k
+;src/test/java/usach/tingeso/services/RepairServiceTest.java,c\0\c0e1ed60db3138291da35fef2e0f9e408f65984e
+x
+Hsrc/test/java/usach/tingeso/services/InternalCalculationServiceTest.java,8\7\87212b3ee20615073e7bf080ac53433f53514194
+g
+7src/main/java/usach/tingeso/services/TicketService.java,7\5\758a9aefe1da8622c288b77be6545b448b705366

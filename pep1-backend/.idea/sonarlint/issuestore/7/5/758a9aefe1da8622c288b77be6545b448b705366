@@ -1,0 +1,71 @@
+
+`
+java:S1192k"JDefine a constant instead of duplicating this literal "Repairs: " 5 times.(ü³¤
+w
+java:S1192n"aDefine a constant instead of duplicating this literal "No repairs found for ticket ID: " 6 times.(ı­é
+g
+java:S1192h"LDefine a constant instead of duplicating this literal "Ticket ID: " 5 times.(´ñÆÿøÿÿÿÿ
+g
+java:S1192q"QDefine a constant instead of duplicating this literal " for ticket ID: " 5 times.(ŠæÄ²
+m
+java:S1192q"WDefine a constant instead of duplicating this literal "Found repair with ID: " 5 times.(ŠæÄ²
+Z
+java:S2583C"DChange this condition so that it does not always evaluate to "false"(ïÃ–ı
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ
+E	java:S106V"+Replace this use of System.out by a logger.(ÖûÃˆşÿÿÿÿ
+E	java:S106h"+Replace this use of System.out by a logger.(´ñÆÿøÿÿÿÿ
+@	java:S106k"+Replace this use of System.out by a logger.(ü³¤
+@	java:S106n"+Replace this use of System.out by a logger.(ı­é
+@	java:S106q"+Replace this use of System.out by a logger.(ŠæÄ²
+F	java:S106ˆ"+Replace this use of System.out by a logger.(´ñÆÿøÿÿÿÿ
+A	java:S106‹"+Replace this use of System.out by a logger.(ü³¤
+A	java:S106"+Replace this use of System.out by a logger.(ı­é
+A	java:S106‘"+Replace this use of System.out by a logger.(ŠæÄ²
+A	java:S106™"+Replace this use of System.out by a logger.(±«í¡
+F	java:S106©"+Replace this use of System.out by a logger.(´ñÆÿøÿÿÿÿ
+A	java:S106¬"+Replace this use of System.out by a logger.(ü³¤
+A	java:S106¯"+Replace this use of System.out by a logger.(ı­é
+A	java:S106²"+Replace this use of System.out by a logger.(ŠæÄ²
+F	java:S106º"+Replace this use of System.out by a logger.(Ë÷üÕøÿÿÿÿ
+F	java:S106Ê"+Replace this use of System.out by a logger.(´ñÆÿøÿÿÿÿ
+A	java:S106Í"+Replace this use of System.out by a logger.(ü³¤
+A	java:S106Ğ"+Replace this use of System.out by a logger.(ı­é
+A	java:S106Ó"+Replace this use of System.out by a logger.(ŠæÄ²
+F	java:S106Û"+Replace this use of System.out by a logger.(Ò—éıùÿÿÿÿ
+F	java:S106ë"+Replace this use of System.out by a logger.(´ñÆÿøÿÿÿÿ
+A	java:S106î"+Replace this use of System.out by a logger.(ü³¤
+A	java:S106ñ"+Replace this use of System.out by a logger.(ı­é
+A	java:S106ô"+Replace this use of System.out by a logger.(ŠæÄ²
+A	java:S106ü"+Replace this use of System.out by a logger.(¸æŸÈ
+A	java:S106”"+Replace this use of System.out by a logger.(şŠõ†
+F	java:S106—"+Replace this use of System.out by a logger.(êòìÊúÿÿÿÿ
+F	java:S106š"+Replace this use of System.out by a logger.(Ë›Æˆúÿÿÿÿ
+A	java:S106"+Replace this use of System.out by a logger.(¯ÁÉ
+A	java:S106 "+Replace this use of System.out by a logger.(±×ƒ
+A	java:S106¥"+Replace this use of System.out by a logger.(“²İ·
+A	java:S106¨"+Replace this use of System.out by a logger.( ‹í•
+F	java:S106ª"+Replace this use of System.out by a logger.(¥ëˆ¼ûÿÿÿÿ
+A	java:S106­"+Replace this use of System.out by a logger.(ª´ÛÄ
+F	java:S106±"+Replace this use of System.out by a logger.(©€Ùúÿÿÿÿ
+@	java:S106·"+Replace this use of System.out by a logger.(í‡µO
+A	java:S106Á"+Replace this use of System.out by a logger.(Íºë¯
+A	java:S106Å"+Replace this use of System.out by a logger.(¯ÁÉ
+F	java:S106Î"+Replace this use of System.out by a logger.(ƒÏóşÿÿÿÿ
+F	java:S106Ï"+Replace this use of System.out by a logger.(…éÚ¨ÿÿÿÿÿ
+F	java:S106Õ"+Replace this use of System.out by a logger.(æòÈ®ùÿÿÿÿ
+A	java:S106×"+Replace this use of System.out by a logger.(şŠõ†
+J
+java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ
+R
+java:S1128"7Remove this unused import 'java.util.stream.IntStream'.(ÙÉ½Ÿùÿÿÿÿ
