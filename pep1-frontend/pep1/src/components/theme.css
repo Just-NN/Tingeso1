@@ -1,9 +1,19 @@
 /* theme.css */
 
 body {
-    background-color: #1a1a1a; /* Dark grey background */
-    color: #f5f5f5; /* Light grey text color */
+    background-image: url("https://images7.alphacoders.com/116/1165173.jpg");
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
 }
+#root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 
 a {
     color: #f5f5f5; /* Light grey link color */
@@ -14,7 +24,7 @@ a:hover {
 }
 
 .navbar {
-    background-color: #333; /* Darker grey background for navbar */
+    background-color: rgba(116, 0, 239, 0.5); /* Purple background */
     color: #f5f5f5; /* Light grey text color */
     border-radius: 10vh;
     width: 100%;
@@ -42,14 +52,58 @@ a:hover {
 .navbar .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='%23fff' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* White hamburger icon */
 }
-.op-button{
+.section-body{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.title {
+    background-color: rgba(0, 32, 239, 0.5);
     border-radius: 10vh;
+    color: #f5f5f5;
+    width: 30%;
+    padding: 1vh;
+    margin: 3vh auto; /* Center horizontally */
+    text-align: center; /* Center text */
+}
+
+.reload-button{
+    border-radius: 10vh;
+    background-color: rgba(8, 0, 239, 0.5); /* Blue background */
+    color: #f5f5f5;
+    padding: 3vh;
+    font-weight: bolder;
+}
+.reload-button:hover {
+    background-color: rgba(0, 0, 239, 0.8); /* Dark blue background on hover */
+}
+
+.button-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 5vh;
+}
+.init-button{
+    border-radius: 10vh;
+    background-color: rgba(221, 79, 209, 0.5); /* Blue background */
+    color: #f5f5f5;
+    padding: 3vh;
+    font-weight: bolder;
+}
+.init-button:hover {
+    background-color: rgba(221, 79, 209, 0.8); /* Dark blue background on hover */
+}
+
+.table-container {
+    height: 400px;
+    overflow: auto;
 }
 
 .repair-table {
     width: 100%;
     border-collapse: collapse;
-    overflow: auto;
 }
 
 .repair-table th, .repair-table td {
@@ -58,7 +112,13 @@ a:hover {
 }
 
 .repair-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: rgba(116, 0, 239, 0.5);
+    color: #f5f5f5;
+}
+
+.repair-table tr:nth-child(odd) {
+    background-color: rgba(0, 76, 239, 0.5);
+    color: #f5f5f5;
 }
 
 .repair-table th {
@@ -74,27 +134,52 @@ a:hover {
     overflow: auto;
 }
 
-.titulo{
-    border: 3vh;
-    padding: 3vh;
-}
-.reload-button{
-    border-radius: 10vh;
-    background-color: #4CAF50;
-    color: #f5f5f5;
-    padding: 2vh;
-    margin: 1vh;
-    font-weight: bolder;
-}
-
-.card {
-    background-color: #f1f1f1;
-    width: 80%;
+.option-card {
+    background-color: rgba(116, 0, 239, 0.5);
+    width:100%;
+    height: 50%;
     margin: 0 auto;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    align-content: center;
+    flex-direction: column;
+    display: flex;
+}
+.option-card:hover {
+    background-color: rgba(116, 0, 239, 0.8);
+}
+.op-button{
+    border-radius: 10vh;
+    background-color: rgba(221, 79, 209, 0.5); /* Blue background */
+    color: #f5f5f5;
+    padding: 3vh;
+    font-weight: bolder;
+}
+.option-card p{
+    color: #f5f5f5;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+.option-card input{
+    width: 100%;
+    padding: 1vh;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1vh;
+}
+
+.op-button:hover {
+    background-color: rgba(221, 79, 209, 0.8); /* Dark blue background on hover */
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 50% 50%; /* Single column */
+    padding: 20px;
+    width: auto;
 }
 
 .card-title {
@@ -107,22 +192,14 @@ a:hover {
     border-collapse: collapse;
 }
 
+
 .repair-table th, .repair-table td {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-.repair-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
 
-.repair-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
+
 
 .report-table {
     width: 100%;

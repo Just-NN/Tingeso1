@@ -1,6 +1,5 @@
 import React from 'react';
 import './navbar.css'
-import './theme.css';
 function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

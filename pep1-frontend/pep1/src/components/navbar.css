@@ -1,27 +1,61 @@
+/* Estilos personalizados para la barra de navegación */
+
+/* Asegúrate de que la barra de navegación ocupe el 100% del ancho de la página */
 .navbar {
-    background-color: #333; /* Dark grey background */
-    color: #fff; /* White text color */
-    border-radius: 10vh;
-    padding: 3vh;
+    width: 100%;
+    background-color: #f8f9fa; /* Color de fondo claro */
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil debajo de la barra */
 }
 
-.navbar a {
-    color: #4CAF50; /* White link color */
+/* Estilo para los enlaces de la barra de navegación */
+.navbar-nav .nav-link {
+    color: #007bff; /* Color de los enlaces */
+    padding: 10px 15px;
+    font-weight: bolder;
+    transition: color 0.3s ease; /* Transición suave al pasar el cursor */
 }
 
-.navbar a:hover {
-    color: #275529; /* Light grey link color on hover */
+.navbar-nav .nav-link:hover {
+    color: #0056b3; /* Cambia el color cuando el mouse pasa por encima */
+    text-decoration: underline; /* Subraya los enlaces al pasar el cursor */
 }
 
-.navbar .navbar-brand {
-    color: #4CAF50; /* Green color for the brand */
+/* Estilo especial para el enlace activo */
+.navbar-nav .nav-item.active .nav-link {
+    color: #0056b3; /* Cambia el color para el enlace activo */
+    font-weight: bolder; /* Enlace activo en negrita */
 }
 
-.navbar .navbar-brand:hover {
-    color: #3e8e41; /* Dark green color for the brand on hover */
+/* Responsive: Asegúrate de que la barra colapsable funcione correctamente */
+.navbar-toggler {
+    border: none; /* Elimina el borde del botón de colapso */
+    outline: none;
 }
 
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="rgba%280, 123, 255, 1%29" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+    /* Cambia el ícono del botón de colapso */
+}
 
-.navbar .nav-item.active a {
-    color: #4CAF50; /* Green color for the active link */
+/* Margen entre elementos de la lista de navegación */
+.navbar-nav .nav-item {
+    margin-left: 10px;
+}
+
+.navbar-brand {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000; /* Color del texto del logo o marca */
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px;
+    }
 }

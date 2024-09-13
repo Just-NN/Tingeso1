@@ -46,47 +46,51 @@ const TicketList = () => {
     return (
         <div className='option-body'>
             <NavBar></NavBar>
-            <h1>Ticket List</h1>
+            <h1 className="title">Ticket List</h1>
 
-            <button className="reload-button" onClick={fetchTickets}>Reload Table</button>
-            <button className="init-button" onClick={initTickets}>Initialize Tickets</button>
+            <div className="button-container">
+                <button className="reload-button" onClick={fetchTickets}>Reload Table</button>
+                <button className="init-button" onClick={initTickets}>Initialize Tickets</button>
+            </div>
 
-            <table className="repair-table">
-                <thead>
-                <tr>
-                    <th>ID Ticket</th>
-                    <th>Pickup Date</th>
-                    <th>ID Bonus</th>
-                    <th>Surcharge for KM</th>
-                    <th>Surcharge for Age</th>
-                    <th>Surcharge for Delay</th>
-                    <th>Discount for Repairs</th>
-                    <th>Discount per Day</th>
-                    <th>Discount for Bonus</th>
-                    <th>Brand Bonus</th>
-                    <th>Base Price</th>
-                    <th>Total Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                {tickets.map((ticket, index) => (
-                    <tr key={index}>
-                        <td>{ticket.idTicket}</td>
-                        <td>{format(ticket.pickupDate, "yyyy-MM-dd'T'HH:mm")}</td>
-                        <td>{ticket.idBonus}</td>
-                        <td>{ticket.surchargeForKM}</td>
-                        <td>{ticket.surchargeForAge}</td>
-                        <td>{ticket.surchargeForDelay}</td>
-                        <td>{ticket.discountForRepairs}</td>
-                        <td>{ticket.discountPerDay}</td>
-                        <td>{ticket.discountForBonus}</td>
-                        <td>{ticket.brandBonus}</td>
-                        <td>{ticket.basePrice}</td>
-                        <td>{ticket.totalPrice}</td>
+            <div className="table-container">
+                <table className="repair-table">
+                    <thead>
+                    <tr>
+                        <th>ID Ticket</th>
+                        <th>Pickup Date</th>
+                        <th>ID Bonus</th>
+                        <th>Surcharge for KM</th>
+                        <th>Surcharge for Age</th>
+                        <th>Surcharge for Delay</th>
+                        <th>Discount for Repairs</th>
+                        <th>Discount per Day</th>
+                        <th>Discount for Bonus</th>
+                        <th>Brand Bonus</th>
+                        <th>Base Price</th>
+                        <th>Total Price</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {tickets.map((ticket, index) => (
+                        <tr key={index}>
+                            <td>{ticket.idTicket}</td>
+                            <td>{format(ticket.pickupDate, "yyyy-MM-dd'T'HH:mm")}</td>
+                            <td>{ticket.idBonus}</td>
+                            <td>{ticket.surchargeForKM}</td>
+                            <td>{ticket.surchargeForAge}</td>
+                            <td>{ticket.surchargeForDelay}</td>
+                            <td>{ticket.discountForRepairs}</td>
+                            <td>{ticket.discountPerDay}</td>
+                            <td>{ticket.discountForBonus}</td>
+                            <td>{ticket.brandBonus}</td>
+                            <td>{ticket.basePrice}</td>
+                            <td>{ticket.totalPrice}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

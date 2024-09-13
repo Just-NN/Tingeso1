@@ -17,18 +17,18 @@ const TicketsHome = () => {
     }
 
     return (
-        <div>
+        <div className="section-body">
             <NavBar></NavBar>
 
-            <h1>Tickets</h1>
+            <h1 className="title">Tickets</h1>
             <div className="body">
                 <div className="options-grid">
                     <div className='option-row'>
                         <div className='option-card'>
                             <button className="op-button" onClick={handlePageChange("/tickets/list")}>
-                                <h3>Find All</h3>
+                                <h3>Show all Tickets</h3>
                             </button>
-                            <p>Option 1 description</p>
+                            <p>Display all tickets into a table</p>
                         </div>
                         <div className='option-card'>
                             <form onSubmit={handleIdSubmit}>
@@ -40,24 +40,23 @@ const TicketsHome = () => {
                                     required
                                 />
                                 <button className="op-button" type="submit">
-                                    <h3>Find by id</h3>
+                                    <h3>Find by ID</h3>
                                 </button>
                             </form>
-                            <p>Option 1 description</p>
+                            <p>Display a Ticket using its ID</p>
                         </div>
                     </div>
                     <div className="option-row">
                         <div className='option-card'>
                             <button className="op-button" onClick={handlePageChange("/tickets/add")}>
-                                <h3>Create</h3>
+                                <h3>Create Ticket</h3>
                             </button>
-                            <p>Option 1 description</p>
+                            <p>Fill the forms to create a new Ticket</p>
                         </div>
                         <div className='option-card'>
                             <button className="op-button" onClick={handlePageChange("/tickets/delete")}>
-                                <h3>Delete</h3>
+                                <h3>Delete a Ticket</h3>
                             </button>
-                            <p>Option 1 description</p>
                         </div>
                     </div>
                 </div>
