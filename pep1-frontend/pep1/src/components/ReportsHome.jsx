@@ -48,18 +48,24 @@ const Reports = () => {
     return (
         <div>
             <NavBar></NavBar>
-            <h1>Reports</h1>
+            <h1 className="title">Reports</h1>
             <div className="body">
                 <div className="options-grid">
                     <div className='option-row'>
                         <div className='option-card'>
-                            <button onClick={goToReportList}>
+                            <button className="op-button" onClick={goToReportList}>
                                 <h3>Go to Report List</h3>
                             </button>
-                            <button onClick={createNullReport}>
+                        </div>
+                        <div className='option-card'>
+                            <button className="op-button" onClick={createNullReport}>
                                 <h3>Create First Report</h3>
                             </button>
-                            <button onClick={updateReport}>
+                        </div>
+                    </div>
+                    <div className='option-row'>
+                        <div className='option-card'>
+                            <button className="op-button" onClick={updateReport}>
                                 <h3>Update Reports</h3>
                             </button>
                         </div>

@@ -1,6 +1,6 @@
 
 import './App.css'
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import Home from "./components/Home.jsx";
 import Repairs from "./components/RepairsHome.jsx";
 import Vehicles from "./components/VehiclesHome.jsx";
@@ -21,6 +21,7 @@ function App() {
         <>
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<Navigate to="/home" />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/vehicles" element={<Vehicles />} />
                 <Route path="/repairs" element={<Repairs />} />

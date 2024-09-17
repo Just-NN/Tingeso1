@@ -13,7 +13,7 @@ const TicketsHome = () => {
 
     const handleIdSubmit = (event) => {
         event.preventDefault();
-        navigate(`/tickets/${id}`);
+        navigate(`/ticket/${id}`);
     }
 
     return (
@@ -48,13 +48,13 @@ const TicketsHome = () => {
                     </div>
                     <div className="option-row">
                         <div className='option-card'>
-                            <button className="op-button" onClick={handlePageChange("/tickets/add")}>
+                            <button className="op-button" onClick={handlePageChange("/ticket/add")}>
                                 <h3>Create Ticket</h3>
                             </button>
                             <p>Fill the forms to create a new Ticket</p>
                         </div>
                         <div className='option-card'>
-                            <button className="op-button" onClick={handlePageChange("/tickets/delete")}>
+                            <button className="op-button" onClick={handlePageChange("/ticket/delete")}>
                                 <h3>Delete a Ticket</h3>
                             </button>
                         </div>

@@ -22,8 +22,8 @@ const RepairDetail = () => {
     }
 
     return (
-        <div className="card">
-            <h1 className="card-title">Repair Detail</h1>
+        <div className="table-container">
+            <h1 className="title">Repair {repairId} Detail</h1>
             <table className="repair-table">
                 <tbody>
                 <tr><td>ID Ticket:</td><td>{repair.idTicket}</td></tr>

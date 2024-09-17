@@ -74,53 +74,72 @@ const AddEditRepair2 = () => {
         };
 
         if (idRepair) {
+            console.log("updated");
             repair.idRepair = idRepair;
             repair.idTicket = idTicket;
             repairService.updateRepair(repair).then(() => {
                 navigate('/repairs');
             });
         } else {
-            console.log(repair)
             repairService.saveRepair(repair).then(() => {
                 navigate('/repairs');
-            });
+            })
+            ;
+            console.log("created", repair);
         }
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <div>
             <NavBar></NavBar>
-            <FormGroup>
-                <Label for="licensePlate">License Plate</Label>
-                <Input type="number" id="licensePlate" value={licensePlate || ''} onChange={(e) => setLicensePlate(e.target.value)} />
-            </FormGroup>
-            <FormGroup>
-                <Label for="repairType">Repair Type</Label>
-                <Input type="number" id="repairType" value={repairType || ''} onChange={(e) => setRepairType(e.target.value)} />
-            </FormGroup>
-            <FormGroup>
-                <Label for="entryDateTime">Entry Date and Time</Label>
-                <Input type="datetime-local" id="entryDateTime" value={format(entryDateTime, "yyyy-MM-dd'T'HH:mm")} onChange={(e) => setEntryDateTime(new Date(e.target.value))} />
-            </FormGroup>
-            <FormGroup>
-                <Label for="exitDateTime">Exit Date and Time</Label>
-                <Input type="datetime-local" id="exitDateTime" value={format(exitDateTime, "yyyy-MM-dd'T'HH:mm")} onChange={(e) => setExitDateTime(new Date(e.target.value))} />
-            </FormGroup>
-            <FormGroup>
-                <Label for="exitTime">Exit Time</Label>
-                <Input type="time" id="exitTime" value={exitTime || ''} onChange={(e) => setExitTime(e.target.value)} />
-            </FormGroup>
-            <FormGroup>
-                <Label for="pickupDateTime">Pickup Date and Time</Label>
-                <Input type="datetime-local" id="pickupDateTime" value={format(pickupDateTime, "yyyy-MM-dd'T'HH:mm")} onChange={(e) => setPickupDateTime(new Date(e.target.value))} />
-            </FormGroup>
-            <FormGroup>
-                <Label for="pickupTime">Pickup Time</Label>
-                <Input type="time" id="pickupTime" value={pickupTime || ''} onChange={(e) => setPickupTime(e.target.value)} />
-            </FormGroup>
-            <Button type="submit" color="primary" >Submit</Button>
-        </Form>
+            <div className="form-grid">
+                <div className="form-title">Create a repair</div>
+                <Form className="grid-form" onSubmit={handleSubmit}>
+                    <FormGroup>
+                        <Label for="licensePlate">License Plate</Label>
+                        <Input type="number" id="licensePlate" value={licensePlate || ''}
+                               onChange={(e) => setLicensePlate(e.target.value)}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="repairType">Repair Type</Label>
+                        <Input type="number" id="repairType" value={repairType || ''}
+                               onChange={(e) => setRepairType(e.target.value)}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="entryDateTime">Entry Date and Time</Label>
+                        <Input type="datetime-local" id="entryDateTime"
+                               value={format(entryDateTime, "yyyy-MM-dd'T'HH:mm")}
+                               onChange={(e) => setEntryDateTime(new Date(e.target.value))}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="exitDateTime">Exit Date and Time</Label>
+                        <Input type="datetime-local" id="exitDateTime"
+                               value={format(exitDateTime, "yyyy-MM-dd'T'HH:mm")}
+                               onChange={(e) => setExitDateTime(new Date(e.target.value))}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="exitTime">Exit Time</Label>
+                        <Input type="time" id="exitTime" value={exitTime || ''}
+                               onChange={(e) => setExitTime(e.target.value)}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="pickupDateTime">Pickup Date and Time</Label>
+                        <Input type="datetime-local" id="pickupDateTime"
+                               value={format(pickupDateTime, "yyyy-MM-dd'T'HH:mm")}
+                               onChange={(e) => setPickupDateTime(new Date(e.target.value))}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="pickupTime">Pickup Time</Label>
+                        <Input type="time" id="pickupTime" value={pickupTime || ''}
+                               onChange={(e) => setPickupTime(e.target.value)}/>
+                    </FormGroup>
+
+                </Form>
+                <button className="form-button" type="submit" color="primary">Submit</button>
+            </div>
+        </div>
     );
 };
 
 export default AddEditRepair2;
+

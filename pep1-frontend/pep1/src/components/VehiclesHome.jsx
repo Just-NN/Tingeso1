@@ -19,16 +19,15 @@ const Vehicles = () => {
     return (
         <div>
             <NavBar></NavBar>
-            <h1>Vehicles</h1>
+            <h1 className="title">Vehicles</h1>
             <div className="body">
-                <h2>Options</h2>
                 <div className="options-grid">
                     <div className='option-row'>
                         <div className='option-card'>
                             <button className="op-button" onClick={handlePageChange("/vehicles/list")}>
-                                <h3>Find All</h3>
+                                <h3>Show All Vehicles</h3>
                             </button>
-                            <p>Option 1 description</p>
+                            <p>Display all vehicles as a table</p>
                         </div>
                         <div className='option-card'>
                             <form onSubmit={handleIdSubmit}>
@@ -43,15 +42,15 @@ const Vehicles = () => {
                                     <h3>Find by id</h3>
                                 </button>
                             </form>
-                            <p>Option 1 description</p>
+                            <p>Display a Vehicle using its ID</p>
                         </div>
                     </div>
                     <div className="option-row">
                         <div className='option-card'>
                             <button className="op-button" onClick={handlePageChange("/vehicles/add")}>
-                                <h3>Create</h3>
+                                <h3>Create Vehicle</h3>
                             </button>
-                            <p>Option 1 description</p>
+                            <p>Fill the forms to create a new Vehicle</p>
                         </div>
                         <div className='option-card'>
                             <button className="op-button" onClick={handlePageChange("/vehicles/delete")}>

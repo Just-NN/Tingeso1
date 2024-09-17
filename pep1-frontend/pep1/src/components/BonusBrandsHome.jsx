@@ -19,9 +19,8 @@ const BonusBrands = () => {
     return (
         <div>
             <NavBar></NavBar>
-            <h1>Brand Bonuses</h1>
+            <h1 className="title">Brand Bonuses</h1>
             <div className="body">
-                <h2>Options</h2>
                 <div className="options-grid">
                     <div className='option-row'>
                         <div className='option-card'>
@@ -30,13 +29,14 @@ const BonusBrands = () => {
                             </button>
                             <p>Show all the bonuses</p>
                         </div>
+
                     </div>
                     <div className="option-row">
                         <div className='option-card'>
                             <button className="op-button" onClick={handlePageChange("/brands/add")}>
                                 <h3>Create a Bonus</h3>
                             </button>
-                            <p>Fill the form to create a bonus</p>
+                            <p>Fill the form to create a Bonus</p>
                         </div>
                     </div>
                 </div>

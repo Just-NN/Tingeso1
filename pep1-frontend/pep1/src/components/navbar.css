@@ -1,9 +1,9 @@
 /* Estilos personalizados para la barra de navegación */
 
 /* Asegúrate de que la barra de navegación ocupe el 100% del ancho de la página */
-.navbar {
+.navbar .navbar-expand-lg navbar-light bg-light{
     width: 100%;
-    background-color: #f8f9fa; /* Color de fondo claro */
+    background-color: #1a78dc; /* Color de fondo claro */
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil debajo de la barra */
 }

@@ -9,7 +9,7 @@ import usach.tingeso.services.ReportService;
 
 @RestController
 @RequestMapping("api/v1/report")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ReportController {
 
     @Autowired

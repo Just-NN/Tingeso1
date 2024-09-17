@@ -39,30 +39,34 @@ const AddBrandBonus = () => {
         } else {
             brandBonusService.saveBonusBrand(brandBonus).then(() => {
                 console.log("Brand Bonus saved")
-                navigate('/brandBonuses');
+                navigate('/brands/list');
             });
         }
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <div>
             <NavBar></NavBar>
-            <FormGroup>
-                <Label for="brand">Brand</Label>
-                <Input type="text" id="brand" value={brand || ''} onChange={(e) => setBrand(e.target.value)} />
-            </FormGroup>
-            <FormGroup>
-                <Label for="bonus">Bonus</Label>
-                <Input type="number" id="bonus" value={bonus || ''} onChange={(e) => setBonus(e.target.value)} />
-            </FormGroup>
-            <FormGroup check>
-                <Label check>
-                    <Input type="checkbox" id="active" checked={active} onChange={(e) => setActive(e.target.checked)} />{' '}
-                    Active
-                </Label>
-            </FormGroup>
-            <Button type="submit" color="primary" >Submit</Button>
-        </Form>
+            <h1 className="form-title">Add Brand Bonus</h1>
+            <Form className="grid-form" onSubmit={handleSubmit}>
+                <FormGroup>
+                    <Label for="brand">Brand</Label>
+                    <Input type="text" id="brand" value={brand || ''} onChange={(e) => setBrand(e.target.value)}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="bonus">Bonus</Label>
+                    <Input type="number" id="bonus" value={bonus || ''} onChange={(e) => setBonus(e.target.value)}/>
+                </FormGroup>
+                <FormGroup check>
+                    <Label check>
+                        <Input type="checkbox" id="active" checked={active}
+                               onChange={(e) => setActive(e.target.checked)}/>{' '}
+                        Active
+                    </Label>
+                </FormGroup>
+            </Form>
+            <button className="form-button" type="submit" color="primary">Submit</button>
+        </div>
     );
 };
 

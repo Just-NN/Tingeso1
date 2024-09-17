@@ -10,6 +10,7 @@ const RepairList = () => {
     const fetchRepairs = () => {
         repairService.getAllRepairs()
             .then(response => {
+                console.log("UPDATED");
                 const data = response.data.map(repair => ({
                     ...repair,
                     entryDate: new Date(repair.entryDate),
@@ -34,50 +35,36 @@ const RepairList = () => {
 
             <button className="reload-button" onClick={fetchRepairs}>Reload Table</button>
 
-            <table className="repair-table">
-                <thead>
-                <tr>
-                    <th>ID Ticket</th>
-                    <th>License Plate</th>
-                    <th>Repair Type</th>
-                    <th>Entry Date</th>
-                    <th>Exit Date</th>
-                    <th>Exit Time</th>
-                    <th>Pickup Date</th>
-                    <th>Pickup Time</th>
-                    <th>Total Repair Amount</th>
-                    <th>KM Surcharge</th>
-                    <th>Age Surcharge</th>
-                    <th>Delay Surcharge</th>
-                    <th>Day Discount</th>
-                    <th>Repairs Discount</th>
-                    <th>Base Price</th>
-                    <th>Total Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                {repairs.map((repair, index) => (
-                    <tr key={index}>
-                        <td>{repair.idTicket}</td>
-                        <td>{repair.licensePlate}</td>
-                        <td>{repair.repairType}</td>
-                        <td>{format(repair.entryDate, "yyyy-MM-dd'T'HH:mm")}</td>
-                        <td>{format(repair.exitDate, "yyyy-MM-dd'T'HH:mm")}</td>
-                        <td>{repair.exitTime}</td>
-                        <td>{format(repair.pickupDate, "yyyy-MM-dd'T'HH:mm")}</td>
-                        <td>{repair.pickupTime}</td>
-                        <td>{repair.totalRepairAmount}</td>
-                        <td>{repair.kmSurcharge}</td>
-                        <td>{repair.ageSurcharge}</td>
-                        <td>{repair.delaySurcharge}</td>
-                        <td>{repair.dayDiscount}</td>
-                        <td>{repair.repairsDiscount}</td>
-                        <td>{repair.basePrice}</td>
-                        <td>{repair.totalPrice}</td>
+            <div className="table-container">
+                <table className="repair-table">
+                    <thead>
+                    <tr>
+                        <th>ID Repair</th>
+                        <th>Vehicle ID</th>
+                        <th>Entry Date</th>
+                        <th>Exit Date</th>
+                        <th>Pickup Date</th>
+                        <th>Repair Description</th>
+                        <th>Repair Cost</th>
+                        <th>Repair Status</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {repairs.map(repair => (
+                        <tr key={repair.idRepair}>
+                            <td>{repair.idRepair}</td>
+                            <td>{repair.vehicleId}</td>
+                            <td>{format(repair.entryDate, 'dd/MM/yyyy')}</td>
+                            <td>{format(repair.exitDate, 'dd/MM/yyyy')}</td>
+                            <td>{format(repair.pickupDate, 'dd/MM/yyyy')}</td>
+                            <td>{repair.repairDescription}</td>
+                            <td>{repair.repairCost}</td>
+                            <td>{repair.repairStatus}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+                </div>
         </div>
     )
 }

@@ -51,78 +51,83 @@ const ReportList = () => {
     return (
         <div className='option-body'>
             <NavBar></NavBar>
-            <h1>Report Details</h1>
+            <h1 className="title">Report Details</h1>
 
             <button className="reload-button" onClick={updateReport}>Update Report</button>
             <button className="reload-button" onClick={saveInitReport}>Save Initial Report</button>
 
-            <table className="report-table">
-                <thead>
-                <tr>
-                    <th>ID Report</th>
-                    <th>R1 Details</th>
-                </tr>
-                </thead>
-                <tbody>
-                {report.r1Details.split('\n').map((detail, index) => (
-                    <tr key={index}>
-                        <td>{report.idReport}</td>
-                        {detail.split(',').map((item, i) => <td key={i}>{item}</td>)}
+            <div className="table-container">
+                <table className="repair-table">
+                    <thead>
+                    <tr>
+                        <th>ID Report</th>
+                        <th>R1 Details</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {report.r1Details.split('\n').map((detail, index) => (
+                        <tr key={index}>
+                            <td>{report.idReport}</td>
+                            {detail.split(',').map((item, i) => <td key={i}>{item}</td>)}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
 
-            <table className="report-table">
-                <thead>
-                <tr>
-                    <th>ID Report</th>
-                    <th>R2 Repairs Vs Vehicles By Total Type</th>
-                </tr>
-                </thead>
-                <tbody>
-                {report.r2RepairsVsVehiclesByTotalType.split('\n').map((detail, index) => (
-                    <tr key={index}>
-                        <td>{report.idReport}</td>
-                        {detail.split(',').map((item, i) => <td key={i}>{item}</td>)}
+            <div className="table-container">
+                <table className="repair-table">
+                    <thead>
+                    <tr>
+                        <th>ID Report</th>
+                        <th>R2 Repairs Vs Vehicles By Total Type</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {report.r2RepairsVsVehiclesByTotalType.split('\n').map((detail, index) => (
+                        <tr key={index}>
+                            <td>{report.idReport}</td>
+                            {detail.split(',').map((item, i) => <td key={i}>{item}</td>)}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+                <table className="repair-table">
+                    <thead>
+                    <tr>
+                        <th>ID Report</th>
+                        <th>R3 Average By Brand</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {report.r3AverageByBrand.split(',').map((detail, index) => (
+                        <tr key={index}>
+                            <td>{report.idReport}</td>
+                            <td>{detail}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+                <table className="repair-table">
+                    <thead>
+                    <tr>
+                        <th>ID Report</th>
+                        <th>R4 Repairs Vs Vehicles By Total Engine</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {report.r4RepairsVsVehiclesByTotalEngine.split('\n').map((detail, index) => (
+                        <tr key={index}>
+                            <td>{report.idReport}</td>
+                            {detail.split(',').map((item, i) => <td key={i}>{item}</td>)}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="table-container">
 
-            <table className="report-table">
-                <thead>
-                <tr>
-                    <th>ID Report</th>
-                    <th>R3 Average By Brand</th>
-                </tr>
-                </thead>
-                <tbody>
-                {report.r3AverageByBrand.split(',').map((detail, index) => (
-                    <tr key={index}>
-                        <td>{report.idReport}</td>
-                        <td>{detail}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-
-            <table className="report-table">
-                <thead>
-                <tr>
-                    <th>ID Report</th>
-                    <th>R4 Repairs Vs Vehicles By Total Engine</th>
-                </tr>
-                </thead>
-                <tbody>
-                {report.r4RepairsVsVehiclesByTotalEngine.split('\n').map((detail, index) => (
-                    <tr key={index}>
-                        <td>{report.idReport}</td>
-                        {detail.split(',').map((item, i) => <td key={i}>{item}</td>)}
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            </div>
         </div>
     )
 }
